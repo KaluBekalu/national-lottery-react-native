@@ -1,0 +1,23 @@
+export default {
+  login: "Login",
+  forgotPassword: "Forgot Password",
+  register: "Register",
+  onboardingNav: "Onboarding Navigation",
+  onboarding: "onboarding",
+  authNav: "auth navigation",
+  tabNav: "tab navigation",
+  instructions: "Instructions",
+
+  downloading: "Downloading",
+  welcome: "Welcome",
+  main: "Main",
+  home: "Home",
+  drawer: "Drawer",
+  cardView: "Card View",
+  page: "Page",
+  pageContents: "Contents",
+  tableOfContent: "Table of contents",
+  search: "Search",
+  tools: "Tools",
+  filter: "Filter",
+};
