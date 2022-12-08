@@ -6,6 +6,12 @@ import DataContextProvider from "./src/context/DataContext";
 import { useFonts } from "expo-font";
 import Onboarding from "./src/screens/ChooseLanguage";
 import OnBoardingNavigation from "./src/navigations/OnBoardingNavigation";
+import { CardStyleInterpolators } from "@react-navigation/stack";
+
+// Stack
+import { createStackNavigator } from "@react-navigation/stack";
+import routes from "./src/navigations/routes";
+const Stack = createStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -18,8 +24,7 @@ export default function App() {
         <DataContextProvider>
           <NavigationContainer>
             <SafeAreaView style={{ flex: 1 }}>
-              {/* <DrawerNavigator /> */}
-              <OnBoardingNavigation />
+              <AppNav />
             </SafeAreaView>
           </NavigationContainer>
         </DataContextProvider>
@@ -27,3 +32,20 @@ export default function App() {
     </>
   );
 }
+
+const AppNav = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}
+    >
+      <Stack.Screen
+        name={routes.onboardingNav}
+        component={OnBoardingNavigation}
+      />
+      <Stack.Screen name={routes.drawer} component={DrawerNavigator} />
+    </Stack.Navigator>
+  );
+};

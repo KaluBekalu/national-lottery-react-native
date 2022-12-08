@@ -53,7 +53,7 @@ export default function Onboarding({ navigation }) {
   }, [current]);
 
   const handleFinish = () => {
-    return;
+    return navigation.navigate(routes.drawer);
   };
 
   const renderItem = ({ item }: any) => {
