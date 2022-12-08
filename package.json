@@ -21,6 +21,7 @@
     "dayjs": "^1.11.6",
     "expo": "~46.0.16",
     "expo-font": "~10.2.0",
+    "expo-linear-gradient": "~11.4.0",
     "expo-status-bar": "~1.4.0",
     "expo-updates": "~0.14.7",
     "firebase": "^9.14.0",

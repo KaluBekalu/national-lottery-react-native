@@ -4,6 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import DrawerNavigator from "./src/navigations/DrawerNavigation";
 import DataContextProvider from "./src/context/DataContext";
 import { useFonts } from "expo-font";
+import Onboarding from "./src/screens/ChooseLanguage";
+import OnBoardingNavigation from "./src/navigations/OnBoardingNavigation";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -16,7 +18,8 @@ export default function App() {
         <DataContextProvider>
           <NavigationContainer>
             <SafeAreaView style={{ flex: 1 }}>
-              <DrawerNavigator />
+              {/* <DrawerNavigator /> */}
+              <OnBoardingNavigation />
             </SafeAreaView>
           </NavigationContainer>
         </DataContextProvider>

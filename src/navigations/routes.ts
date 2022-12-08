@@ -4,6 +4,7 @@ export default {
   register: "Register",
   onboardingNav: "Onboarding Navigation",
   onboarding: "onboarding",
+  chooseLanguage: "Choose Language",
   authNav: "auth navigation",
   tabNav: "tab navigation",
   instructions: "Instructions",

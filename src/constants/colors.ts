@@ -8,7 +8,7 @@ export default {
   shadow: "#000000080",
   grey: "#9c9c9c",
   green: "#03A900",
-  subtleWhite: "#ffffff40",
+  subtleWhite: "#ffffff50",
   transparent: "#ffffff00",
   red: "#f00",
 };
