@@ -42,7 +42,6 @@ const DATA = [
 export default function Onboarding({ navigation }) {
   const scrollx = React.useRef(new Animated.Value(0)).current;
   const flatListRef = React.useRef<FlatList>(null);
-  const ref = React.useRef<ScrollView>(null);
   const [current, setCurrent] = React.useState(0);
 
   React.useEffect(() => {

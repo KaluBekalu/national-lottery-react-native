@@ -4,6 +4,7 @@ import routes from "./routes";
 import { Home } from "../screens/Home";
 import CustomDrawer from "../components/CustomDrawer";
 import { StatusBar } from "react-native";
+import colors from "../constants/colors";
 
 const Drawer = createDrawerNavigator();
 
@@ -14,16 +15,21 @@ export default function DrawerNavigator({}) {
     <>
       <StatusBar
         hidden={false}
-        backgroundColor="white"
-        barStyle="dark-content"
+        backgroundColor={colors.primary}
+        barStyle="light-content"
       />
       <Drawer.Navigator
         drawerContent={(props) => <CustomDrawer navigation={navigation} />}
-        screenOptions={{}}
+        screenOptions={{
+          headerTitleStyle: { fontWeight: "bold" },
+          headerTitleAlign: "center",
+          headerTintColor: colors.white,
+          headerStyle: { backgroundColor: colors.primary },
+        }}
       >
         <Drawer.Screen
           name={routes.home}
-          options={{ headerTitle: routes.home }}
+          options={{ headerTitle: "ብሔራዊ ሎተሪ አስተዳደር" }}
           component={Home}
         />
       </Drawer.Navigator>
