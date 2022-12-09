@@ -23,42 +23,42 @@ const CustomDrawer = ({ navigation }) => {
     },
     {
       key: 1,
-      route: routes.check_lotto,
+      route: routes.check_lotto_nav,
       title: "ቁጥሮን ይፈትሹ",
     },
     {
       key: 2,
-      route: routes.check_lotto,
+      route: routes.check_lotto_nav,
       title: "አሸናፊ ቁጥሮች",
     },
     {
       key: 3,
-      route: routes.check_lotto,
+      route: routes.check_lotto_nav,
       title: "የሎተሪ መውጫ ቀኖች",
     },
     {
       key: 4,
-      route: routes.check_lotto,
+      route: routes.check_lotto_nav,
       title: "ዜና እና መረጃዎች",
     },
     {
       key: 5,
-      route: routes.check_lotto,
+      route: routes.check_lotto_nav,
       title: "የአሸናፊዎች ታሪክ",
     },
     {
       key: 6,
-      route: routes.check_lotto,
+      route: routes.check_lotto_nav,
       title: "ያግኙን",
     },
     {
       key: 7,
-      route: routes.check_lotto,
+      route: routes.check_lotto_nav,
       title: "ደንብና መመሪያዎች",
     },
     {
       key: 8,
-      route: routes.check_lotto,
+      route: routes.check_lotto_nav,
       title: "ቅንብር",
     },
   ];

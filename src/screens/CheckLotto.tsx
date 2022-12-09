@@ -6,8 +6,8 @@ import Icon from "react-native-vector-icons/AntDesign";
 import colors from "../constants/colors";
 import Gradient from "../components/Gradient";
 import routes from "../navigations/routes";
-import { CButton } from "./CButton";
-import { LottoNumberBox } from "./LottoNumberBox";
+import { CButton } from "../components/CButton";
+import { LottoNumberBox } from "../components/LottoNumberBox";
 
 const { width, height } = Dimensions.get("window");
 
@@ -108,6 +108,7 @@ export default function CheckLotto({ navigation }) {
           {[0, 1, 2, 3, 4, 5, 6].map((i) => {
             return (
               <LottoNumberBox
+                key={i}
                 content={lottoNumber && lottoNumber[i] ? lottoNumber[i] : "*"}
               />
             );

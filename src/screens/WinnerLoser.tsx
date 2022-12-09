@@ -3,15 +3,15 @@ import React, { useState } from "react";
 import CText from "../components/CText";
 import colors from "../constants/colors";
 import Gradient from "../components/Gradient";
-import { CButton } from "./CButton";
+import { CButton } from "../components/CButton";
 import Lottie from "lottie-react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { LottoNumberBox } from "./LottoNumberBox";
+import { LottoNumberBox } from "../components/LottoNumberBox";
 
 const { width, height } = Dimensions.get("window");
 
 const WinnerLoser = () => {
-  const [winner, setWinner] = useState(false);
+  const [winner, setWinner] = useState(true);
 
   return (
     <Gradient style={{ flex: 1 }} start={{ x: 0, y: 0 }} end={{ x: 0, y: 0.5 }}>

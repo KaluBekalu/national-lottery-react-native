@@ -24,8 +24,8 @@ export default function App() {
         <DataContextProvider>
           <NavigationContainer>
             <SafeAreaView style={{ flex: 1 }}>
-              {/* <AppNav /> */}
-              <DrawerNavigator />
+              <AppNav />
+              {/* <DrawerNavigator /> */}
             </SafeAreaView>
           </NavigationContainer>
         </DataContextProvider>
