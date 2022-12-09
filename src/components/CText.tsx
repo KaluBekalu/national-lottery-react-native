@@ -7,7 +7,11 @@ type TextTypes = {
 };
 
 const CText = ({ content, style = {} }: TextTypes) => {
-  return <Text style={[style, { fontFamily: "lexend" }]}>{content}</Text>;
+  return (
+    <Text style={[style, { fontFamily: "lexend", fontSize: 18 }]}>
+      {content}
+    </Text>
+  );
 };
 
 export default CText;

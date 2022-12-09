@@ -1,5 +1,6 @@
 export default {
   primary: "#086FCF",
+  lightBlue: "#499BF1",
   secondary: "#606060",
   borderColor: "#46A1FF",
   lightPrimary: "#086FCF90",

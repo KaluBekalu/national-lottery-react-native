@@ -19,7 +19,10 @@ export default function OnBoardingNavigation() {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
         }}
       >
-        <Stack.Screen name={routes.chooseLanguage} component={ChooseLanguage} />
+        <Stack.Screen
+          name={routes.choose_language}
+          component={ChooseLanguage}
+        />
         <Stack.Screen name={routes.onboarding} component={Onboarding} />
       </Stack.Navigator>
     </>

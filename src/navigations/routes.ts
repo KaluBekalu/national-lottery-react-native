@@ -1,24 +1,10 @@
 export default {
-  login: "Login",
-  forgotPassword: "Forgot Password",
-  register: "Register",
-  onboardingNav: "Onboarding Navigation",
-  onboarding: "onboarding",
-  chooseLanguage: "Choose Language",
-  authNav: "auth navigation",
-  tabNav: "tab navigation",
-  instructions: "Instructions",
-
-  downloading: "Downloading",
-  welcome: "Welcome",
-  main: "Main",
-  home: "Home",
   drawer: "Drawer",
-  cardView: "Card View",
-  page: "Page",
-  pageContents: "Contents",
-  tableOfContent: "Table of contents",
-  search: "Search",
-  tools: "Tools",
-  filter: "Filter",
+  onboarding_nav: "Onboarding Navigation",
+
+  onboarding: "onboarding",
+  choose_language: "Choose Language",
+
+  home: "Home",
+  check_lotto: "Check Lotto",
 };

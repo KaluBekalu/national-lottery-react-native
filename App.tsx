@@ -43,7 +43,7 @@ const AppNav = () => {
       }}
     >
       <Stack.Screen
-        name={routes.onboardingNav}
+        name={routes.onboarding_nav}
         component={OnBoardingNavigation}
       />
       <Stack.Screen name={routes.drawer} component={DrawerNavigator} />

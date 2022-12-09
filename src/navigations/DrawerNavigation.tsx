@@ -5,6 +5,7 @@ import { Home } from "../screens/Home";
 import CustomDrawer from "../components/CustomDrawer";
 import { StatusBar } from "react-native";
 import colors from "../constants/colors";
+import CheckLotto from "../screens/CheckLotto";
 
 const Drawer = createDrawerNavigator();
 
@@ -24,9 +25,18 @@ export default function DrawerNavigator({}) {
           headerTitleStyle: { fontWeight: "bold" },
           headerTitleAlign: "center",
           headerTintColor: colors.white,
-          headerStyle: { backgroundColor: colors.primary },
+          headerStyle: {
+            backgroundColor: colors.primary,
+            elevation: 20,
+            shadowColor: colors.black,
+          },
         }}
       >
+        <Drawer.Screen
+          name={routes.check_lotto}
+          options={{ headerTitle: "የእጣ ቁጥሮች" }}
+          component={CheckLotto}
+        />
         <Drawer.Screen
           name={routes.home}
           options={{ headerTitle: "ብሔራዊ ሎተሪ አስተዳደር" }}

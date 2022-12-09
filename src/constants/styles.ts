@@ -6,7 +6,6 @@ import {
   ViewProps,
   ViewStyle,
 } from "react-native";
-import {} from "react-native-svg";
 import colors from "./colors";
 
 type styleTypes = {
