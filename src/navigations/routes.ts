@@ -7,4 +7,6 @@ export default {
 
   home: "Home",
   check_lotto: "Check Lotto",
+  winner_loser: "Winner_Loser",
+  loser: "Loser",
 };

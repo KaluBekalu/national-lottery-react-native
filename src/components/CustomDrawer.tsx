@@ -14,6 +14,55 @@ import CText from "./CText";
 
 const CustomDrawer = ({ navigation }) => {
   const { fetchPosts } = useContext(DataContext);
+
+  const menuOptions = [
+    {
+      key: 0,
+      route: routes.home,
+      title: "መነሻ ገፅ",
+    },
+    {
+      key: 1,
+      route: routes.check_lotto,
+      title: "ቁጥሮን ይፈትሹ",
+    },
+    {
+      key: 2,
+      route: routes.check_lotto,
+      title: "አሸናፊ ቁጥሮች",
+    },
+    {
+      key: 3,
+      route: routes.check_lotto,
+      title: "የሎተሪ መውጫ ቀኖች",
+    },
+    {
+      key: 4,
+      route: routes.check_lotto,
+      title: "ዜና እና መረጃዎች",
+    },
+    {
+      key: 5,
+      route: routes.check_lotto,
+      title: "የአሸናፊዎች ታሪክ",
+    },
+    {
+      key: 6,
+      route: routes.check_lotto,
+      title: "ያግኙን",
+    },
+    {
+      key: 7,
+      route: routes.check_lotto,
+      title: "ደንብና መመሪያዎች",
+    },
+    {
+      key: 8,
+      route: routes.check_lotto,
+      title: "ቅንብር",
+    },
+  ];
+
   return (
     <ScrollView
       style={{
@@ -60,55 +109,19 @@ const CustomDrawer = ({ navigation }) => {
         }}
       />
       <View style={{}}>
-        <DrawerButton
-          route={undefined}
-          navigation={navigation}
-          active={true}
-          title={"ቁጥሮን ይፈትሹ"}
-          LeftIcon={() => (
-            <Icon2 name="ticket" size={25} color={colors.white} />
-          )}
-        />
-        <DrawerButton
-          route={undefined}
-          navigation={navigation}
-          title={"ቁጥሮን ይፈትሹ"}
-          LeftIcon={() => (
-            <Icon2 name="ticket" size={25} color={colors.white} />
-          )}
-        />
-        <DrawerButton
-          route={undefined}
-          navigation={navigation}
-          title={"ቁጥሮን ይፈትሹ"}
-          LeftIcon={() => (
-            <Icon2 name="ticket" size={25} color={colors.white} />
-          )}
-        />
-        <DrawerButton
-          route={undefined}
-          navigation={navigation}
-          title={"ቁጥሮን ይፈትሹ"}
-          LeftIcon={() => (
-            <Icon2 name="ticket" size={25} color={colors.white} />
-          )}
-        />
-        <DrawerButton
-          route={undefined}
-          navigation={navigation}
-          title={"ቁጥሮን ይፈትሹ"}
-          LeftIcon={() => (
-            <Icon2 name="ticket" size={25} color={colors.white} />
-          )}
-        />
-        <DrawerButton
-          route={undefined}
-          navigation={navigation}
-          title={"ቁጥሮን ይፈትሹ"}
-          LeftIcon={() => (
-            <Icon2 name="ticket" size={25} color={colors.white} />
-          )}
-        />
+        {menuOptions.map((option) => {
+          return (
+            <DrawerButton
+              key={option.key}
+              route={option.route}
+              navigation={navigation}
+              title={option.title}
+              LeftIcon={() => (
+                <Icon2 name="ticket" size={25} color={colors.white} />
+              )}
+            />
+          );
+        })}
       </View>
     </ScrollView>
   );
@@ -127,7 +140,7 @@ const DrawerButton = ({
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={() => {
-        // navigation.navigate(route);
+        route && navigation.navigate(route);
       }}
       style={{
         flexDirection: "row",

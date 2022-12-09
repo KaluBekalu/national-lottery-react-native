@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { Dimensions, TextInput, TouchableOpacity, View } from "react-native";
+import { Dimensions, TextInput, View } from "react-native";
 import CText from "../components/CText";
 import { Dropdown } from "../components/Dropdown";
 import Icon from "react-native-vector-icons/AntDesign";
 import colors from "../constants/colors";
+import Gradient from "../components/Gradient";
+import routes from "../navigations/routes";
+import { CButton } from "./CButton";
+import { LottoNumberBox } from "./LottoNumberBox";
 
 const { width, height } = Dimensions.get("window");
 
-export default function CheckLotto() {
+export default function CheckLotto({ navigation }) {
   const lottos = [
     {
       key: 1,
@@ -40,7 +44,7 @@ export default function CheckLotto() {
 
   return (
     <View style={{ flex: 1 }}>
-      <View
+      <Gradient
         style={{
           padding: 15,
           backgroundColor: colors.primary,
@@ -103,50 +107,21 @@ export default function CheckLotto() {
           />
           {[0, 1, 2, 3, 4, 5, 6].map((i) => {
             return (
-              <View
-                key={i}
-                style={{
-                  backgroundColor: colors.white,
-                  height: 60,
-                  width: 40,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 5,
-                }}
-              >
-                <CText
-                  content={lottoNumber && lottoNumber[i] ? lottoNumber[i] : "*"}
-                  style={{
-                    fontSize: 20,
-                    textAlign: "center",
-                    fontWeight: "bold",
-                  }}
-                />
-              </View>
+              <LottoNumberBox
+                content={lottoNumber && lottoNumber[i] ? lottoNumber[i] : "*"}
+              />
             );
           })}
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.9}
+        <CButton
+          onPress={() => navigation.navigate(routes.winner_loser)}
+          title={"ቁጥሮን ይፈትሹ"}
           style={{
-            backgroundColor: colors.lightBlue,
-            padding: 10,
-            alignItems: "center",
             position: "absolute",
-            justifyContent: "center",
-            width: width * 0.9,
-            alignSelf: "center",
-            bottom: -30,
-            borderRadius: 5,
           }}
-        >
-          <CText
-            content="ቁጥሮን ይፈትሹ"
-            style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
-          />
-        </TouchableOpacity>
-      </View>
+        />
+      </Gradient>
     </View>
   );
 }

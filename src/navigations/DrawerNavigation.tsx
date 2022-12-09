@@ -6,6 +6,8 @@ import CustomDrawer from "../components/CustomDrawer";
 import { StatusBar } from "react-native";
 import colors from "../constants/colors";
 import CheckLotto from "../screens/CheckLotto";
+import { LinearGradient } from "expo-linear-gradient";
+import WinnerLoser from "../screens/WinnerLoser";
 
 const Drawer = createDrawerNavigator();
 
@@ -32,6 +34,11 @@ export default function DrawerNavigator({}) {
           },
         }}
       >
+        <Drawer.Screen
+          name={routes.winner_loser}
+          options={{ headerTitle: "ብሔራዊ ሎተሪ አስተዳደር" }}
+          component={WinnerLoser}
+        />
         <Drawer.Screen
           name={routes.check_lotto}
           options={{ headerTitle: "የእጣ ቁጥሮች" }}

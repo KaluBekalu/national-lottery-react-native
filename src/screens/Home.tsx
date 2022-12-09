@@ -13,6 +13,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import CText from "../components/CText";
 import colors from "../constants/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import Gradient from "../components/Gradient";
 
 const { width, height } = Dimensions.get("window");
 const DATA = [
@@ -50,16 +51,17 @@ export const Home = () => {
         <View style={{ borderRadius: 10, overflow: "hidden", elevation: 5 }}>
           <Image source={item.img} style={{ width: width - 20 }} />
 
-          <LinearGradient
+          <Gradient
             style={{
               position: "absolute",
               bottom: 0,
-              width: width,
+              width,
               height: "35%",
               justifyContent: "center",
             }}
-            colors={[colors.lightPrimary, colors.primary]}
-            end={{ x: 0, y: 1 }}
+            gradColors={[colors.lightPrimary, colors.primary]}
+            start={{ x: 1, y: 0 }}
+            end={{ x: 1, y: 1 }}
           >
             <TouchableOpacity activeOpacity={0.7}>
               <CText
@@ -68,11 +70,12 @@ export const Home = () => {
                   textAlign: "center",
                   fontWeight: "bold",
                   fontSize: 20,
+                  width: "90%",
                 }}
                 content="ወ/ሮ  የዚዳ ጀበል በ አድማስ ድጂታል ሎተሪ 5ኛ ዕጣ 160 ሺህ ብር አሸናፊ"
               />
             </TouchableOpacity>
-          </LinearGradient>
+          </Gradient>
         </View>
       </View>
     );
@@ -124,65 +127,71 @@ const Cards = () => {
 
   const renderItem = ({ item }: any) => {
     return (
-      <TouchableOpacity
-        activeOpacity={0.7}
+      <Gradient
         style={{
+          elevation: 5,
           width: width * 0.7,
-          backgroundColor: colors.primary,
           margin: 10,
           padding: 10,
           height: width / 3.5,
-          flexDirection: "row",
-          justifyContent: "space-between",
           borderRadius: 10,
-          alignItems: "center",
-          elevation: 5,
         }}
       >
-        <CText
-          content={item.title}
+        <TouchableOpacity
+          activeOpacity={0.7}
           style={{
-            color: colors.white,
-            fontSize: 20,
-            fontWeight: "bold",
-            width: "60%",
-          }}
-        />
-        <View
-          style={{
-            backgroundColor: colors.white,
-            borderRadius: 10,
-            overflow: "hidden",
+            flexDirection: "row",
+            justifyContent: "space-between",
+
+            alignItems: "center",
           }}
         >
           <CText
-            content={item.month}
+            content={item.title}
             style={{
               color: colors.white,
-              backgroundColor: colors.lightPrimary,
-              textAlign: "center",
-            }}
-          />
-          <CText
-            content={item.date}
-            style={{
-              color: colors.primary,
-              fontSize: 30,
+              fontSize: 20,
               fontWeight: "bold",
-              marginHorizontal: 20,
+              width: "60%",
             }}
           />
-          <CText
-            content={"ይወጣል"}
+          <View
             style={{
-              color: colors.primary,
-              textAlign: "center",
-              fontWeight: "bold",
-              marginBottom: 10,
+              backgroundColor: colors.white,
+              borderRadius: 10,
+              overflow: "hidden",
             }}
-          />
-        </View>
-      </TouchableOpacity>
+          >
+            <CText
+              content={item.month}
+              style={{
+                color: colors.white,
+                backgroundColor: colors.lightPrimary,
+                textAlign: "center",
+                paddingHorizontal: 5,
+              }}
+            />
+            <CText
+              content={item.date}
+              style={{
+                color: colors.primary,
+                fontSize: 40,
+                fontWeight: "bold",
+                marginHorizontal: 20,
+              }}
+            />
+            <CText
+              content={"ይወጣል"}
+              style={{
+                color: colors.primary,
+                textAlign: "center",
+                fontWeight: "bold",
+                marginBottom: 10,
+              }}
+            />
+          </View>
+        </TouchableOpacity>
+      </Gradient>
     );
   };
 

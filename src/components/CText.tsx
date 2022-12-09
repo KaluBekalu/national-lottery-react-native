@@ -8,7 +8,7 @@ type TextTypes = {
 
 const CText = ({ content, style = {} }: TextTypes) => {
   return (
-    <Text style={[style, { fontFamily: "lexend", fontSize: 18 }]}>
+    <Text style={[{ fontFamily: "lexend", fontSize: 18 }, style]}>
       {content}
     </Text>
   );
