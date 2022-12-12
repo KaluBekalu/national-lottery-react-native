@@ -4,13 +4,13 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import DrawerNavigator from "./src/navigations/DrawerNavigation";
 import DataContextProvider from "./src/context/DataContext";
 import { useFonts } from "expo-font";
-import Onboarding from "./src/screens/ChooseLanguage";
 import OnBoardingNavigation from "./src/navigations/OnBoardingNavigation";
 import { CardStyleInterpolators } from "@react-navigation/stack";
 
 // Stack
 import { createStackNavigator } from "@react-navigation/stack";
 import routes from "./src/navigations/routes";
+import Tickets from "./src/screens/Tickets";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -25,7 +25,6 @@ export default function App() {
           <NavigationContainer>
             <SafeAreaView style={{ flex: 1 }}>
               <AppNav />
-              {/* <DrawerNavigator /> */}
             </SafeAreaView>
           </NavigationContainer>
         </DataContextProvider>

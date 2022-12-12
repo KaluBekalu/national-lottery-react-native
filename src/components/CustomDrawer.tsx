@@ -28,7 +28,7 @@ const CustomDrawer = ({ navigation }) => {
     },
     {
       key: 2,
-      route: routes.check_lotto_nav,
+      route: routes.tickets,
       title: "አሸናፊ ቁጥሮች",
     },
     {

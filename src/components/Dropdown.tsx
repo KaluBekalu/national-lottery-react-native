@@ -26,7 +26,11 @@ export const Dropdown = ({
       >
         <CText
           content={value ? value : placeholder}
-          style={{ fontSize: 15, color: value ? colors.black : colors.grey }}
+          style={{
+            fontSize: 15,
+            fontWeight: "bold",
+            color: value ? colors.primary : colors.grey,
+          }}
         />
         <Icon name="caretdown" size={15} color={colors.primary} />
       </TouchableOpacity>
@@ -35,7 +39,7 @@ export const Dropdown = ({
           style={{
             backgroundColor: colors.white,
             position: "absolute",
-            zIndex: 100,
+            zIndex: 500,
             width: "100%",
             marginTop: 5,
             top: "100%",
@@ -68,7 +72,7 @@ export const Dropdown = ({
                   <CText
                     key={i.key}
                     content={i.value}
-                    style={{ fontSize: 15 }}
+                    style={{ fontSize: 15, color: colors.primary }}
                   />
                 </TouchableOpacity>
               </View>
