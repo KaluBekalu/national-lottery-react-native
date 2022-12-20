@@ -134,10 +134,9 @@ const Cards = () => {
       <Gradient
         style={{
           elevation: 5,
-          width: width * 0.7,
+          width: "auto",
           margin: 10,
           padding: 10,
-          height: width / 3.5,
           borderRadius: 10,
         }}
       >
@@ -146,7 +145,6 @@ const Cards = () => {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-
             alignItems: "center",
           }}
         >
@@ -156,7 +154,8 @@ const Cards = () => {
               color: colors.white,
               fontSize: 20,
               fontWeight: "bold",
-              width: "60%",
+              maxWidth: 200,
+              marginRight: 10,
             }}
           />
           <View
@@ -179,9 +178,10 @@ const Cards = () => {
               content={item.date}
               style={{
                 color: colors.primary,
-                fontSize: 40,
+                fontSize: width * 0.06,
                 fontWeight: "bold",
-                marginHorizontal: 20,
+                alignSelf: "center",
+                marginHorizontal: width * 0.04,
               }}
             />
             <CText
@@ -189,7 +189,7 @@ const Cards = () => {
               style={{
                 color: colors.primary,
                 textAlign: "center",
-                fontWeight: "bold",
+                // fontWeight: "bold",
                 marginBottom: 10,
               }}
             />
