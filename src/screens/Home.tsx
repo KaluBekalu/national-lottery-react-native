@@ -14,6 +14,7 @@ import CText from "../components/CText";
 import colors from "../constants/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Gradient from "../components/Gradient";
+import routes from "../navigations/routes";
 
 const { width, height } = Dimensions.get("window");
 const DATA = [
@@ -34,7 +35,7 @@ const DATA = [
   },
 ];
 
-export const Home = () => {
+export const Home = ({ navigation }) => {
   const flatListRef = useRef<FlatList>(null);
 
   const renderItem = ({ item }: any) => {
@@ -63,7 +64,10 @@ export const Home = () => {
             start={{ x: 1, y: 0 }}
             end={{ x: 1, y: 1 }}
           >
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(routes.news_details)}
+              activeOpacity={0.7}
+            >
               <CText
                 style={{
                   color: colors.white,

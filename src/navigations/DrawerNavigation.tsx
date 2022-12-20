@@ -14,6 +14,7 @@ import WinnerLoser from "../screens/WinnerLoser";
 import { CheckLottoNav } from "./CheckLottoNav";
 import Tickets from "../screens/Tickets";
 import Testimonials from "../screens/Testimonials";
+import NewsDetails from "../screens/NewsDetails";
 
 const Drawer = createDrawerNavigator();
 
@@ -50,6 +51,11 @@ export default function DrawerNavigator({}) {
           name={routes.testimonials}
           options={{ headerTitle: "የአሸናፊዎች ታሪክ" }}
           component={Testimonials}
+        />
+        <Drawer.Screen
+          name={routes.news_details}
+          options={{ headerTitle: "አድማስ ድጂታል ሎተሪ" }}
+          component={NewsDetails}
         />
       </Drawer.Navigator>
     </>
