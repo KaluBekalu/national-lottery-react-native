@@ -10,4 +10,5 @@ export default {
   check_lotto: "Check Lotto",
   winner_loser: "Winner_Loser",
   tickets: "Check Lotto",
+  testimonials: "testimonials",
 };

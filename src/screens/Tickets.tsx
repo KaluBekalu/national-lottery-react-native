@@ -157,6 +157,7 @@ const Ticket = () => {
         {["123", "98187237", "866278"].map((num) => {
           return (
             <View
+              key={num}
               style={{
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -175,6 +176,7 @@ const Ticket = () => {
                 {num.split("").map((i) => {
                   return (
                     <CText
+                      key={Math.random()}
                       content={i.toString()}
                       style={{
                         color: colors.white,

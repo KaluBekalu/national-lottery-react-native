@@ -1,9 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Alert, Image, StyleSheet, ScrollView } from "react-native";
+import React, { useContext } from "react";
+import { Image, StyleSheet, ScrollView } from "react-native";
+import * as Linking from "expo-linking";
 
 import { View, Text, TouchableOpacity } from "react-native";
 
 import Icon from "react-native-vector-icons/AntDesign";
+import Icon3 from "react-native-vector-icons/FontAwesome";
 import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 
 import colors from "../constants/colors";
@@ -20,46 +22,55 @@ const CustomDrawer = ({ navigation }) => {
       key: 0,
       route: routes.home,
       title: "መነሻ ገፅ",
+      icon: () => <Icon2 name="home" size={25} color={colors.white} />,
     },
     {
       key: 1,
       route: routes.check_lotto_nav,
       title: "ቁጥሮን ይፈትሹ",
+      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
     },
     {
       key: 2,
       route: routes.tickets,
       title: "አሸናፊ ቁጥሮች",
+      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
     },
     {
       key: 3,
       route: routes.check_lotto_nav,
       title: "የሎተሪ መውጫ ቀኖች",
+      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
     },
     {
       key: 4,
       route: routes.check_lotto_nav,
       title: "ዜና እና መረጃዎች",
+      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
     },
     {
       key: 5,
-      route: routes.check_lotto_nav,
+      route: routes.testimonials,
       title: "የአሸናፊዎች ታሪክ",
+      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
     },
     {
       key: 6,
       route: routes.check_lotto_nav,
       title: "ያግኙን",
+      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
     },
     {
       key: 7,
       route: routes.check_lotto_nav,
       title: "ደንብና መመሪያዎች",
+      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
     },
     {
       key: 8,
       route: routes.check_lotto_nav,
       title: "ቅንብር",
+      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
     },
   ];
 
@@ -116,12 +127,46 @@ const CustomDrawer = ({ navigation }) => {
               route={option.route}
               navigation={navigation}
               title={option.title}
-              LeftIcon={() => (
-                <Icon2 name="ticket" size={25} color={colors.white} />
-              )}
+              LeftIcon={option.icon}
             />
           );
         })}
+      </View>
+
+      <View
+        style={{
+          marginTop: 10,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <CText style={{ color: colors.white }} content="Contacts" />
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <TouchableOpacity onPress={() => Linking.openURL("https://expo.dev")}>
+            <Icon3
+              name="phone"
+              style={{ fontSize: 30, color: colors.white, margin: 20 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => Linking.openURL("https://expo.dev")}>
+            <Icon3
+              name="telegram"
+              style={{ fontSize: 30, color: colors.white, margin: 20 }}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => Linking.openURL("https://expo.dev")}>
+            <Icon3
+              name="facebook-official"
+              style={{ fontSize: 30, color: colors.white, margin: 20 }}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );

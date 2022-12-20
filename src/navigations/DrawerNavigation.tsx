@@ -13,6 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import WinnerLoser from "../screens/WinnerLoser";
 import { CheckLottoNav } from "./CheckLottoNav";
 import Tickets from "../screens/Tickets";
+import Testimonials from "../screens/Testimonials";
 
 const Drawer = createDrawerNavigator();
 
@@ -44,6 +45,11 @@ export default function DrawerNavigator({}) {
           name={routes.check_lotto_nav}
           options={{ headerTitle: "የእጣ ቁጥሮች" }}
           component={CheckLottoNav}
+        />
+        <Drawer.Screen
+          name={routes.testimonials}
+          options={{ headerTitle: "የአሸናፊዎች ታሪክ" }}
+          component={Testimonials}
         />
       </Drawer.Navigator>
     </>
