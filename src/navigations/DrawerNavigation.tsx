@@ -15,6 +15,7 @@ import { CheckLottoNav } from "./CheckLottoNav";
 import Tickets from "../screens/Tickets";
 import Testimonials from "../screens/Testimonials";
 import NewsDetails from "../screens/NewsDetails";
+import ContactUs from "../screens/ContactUs";
 
 const Drawer = createDrawerNavigator();
 
@@ -56,6 +57,11 @@ export default function DrawerNavigator({}) {
           name={routes.news_details}
           options={{ headerTitle: "አድማስ ድጂታል ሎተሪ" }}
           component={NewsDetails}
+        />
+        <Drawer.Screen
+          name={routes.contact_us}
+          options={{ headerTitle: "ያግኙን" }}
+          component={ContactUs}
         />
       </Drawer.Navigator>
     </>
