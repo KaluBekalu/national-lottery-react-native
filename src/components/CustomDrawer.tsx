@@ -28,49 +28,55 @@ const CustomDrawer = ({ navigation }) => {
       key: 1,
       route: routes.check_lotto_nav,
       title: "ቁጥሮን ይፈትሹ",
-      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
+      icon: () => (
+        <Icon2 name="check-decagram" size={25} color={colors.white} />
+      ),
     },
     {
       key: 2,
       route: routes.tickets,
       title: "አሸናፊ ቁጥሮች",
-      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
+      icon: () => (
+        <Icon2 name="format-list-numbered" size={25} color={colors.white} />
+      ),
     },
     {
       key: 3,
       route: routes.check_lotto_nav,
       title: "የሎተሪ መውጫ ቀኖች",
-      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
+      icon: () => <Icon name="calendar" size={25} color={colors.white} />,
     },
     {
       key: 4,
       route: routes.check_lotto_nav,
       title: "ዜና እና መረጃዎች",
-      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
+      icon: () => <Icon2 name="newspaper" size={25} color={colors.white} />,
     },
     {
       key: 5,
       route: routes.testimonials,
       title: "የአሸናፊዎች ታሪክ",
-      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
+      icon: () => <Icon2 name="nature-people" size={25} color={colors.white} />,
     },
     {
       key: 6,
-      route: routes.check_lotto_nav,
+      route: routes.contact_us,
       title: "ያግኙን",
-      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
+      icon: () => <Icon2 name="phone" size={25} color={colors.white} />,
     },
     {
       key: 7,
       route: routes.check_lotto_nav,
       title: "ደንብና መመሪያዎች",
-      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
+      icon: () => (
+        <Icon2 name="format-list-bulleted" size={25} color={colors.white} />
+      ),
     },
     {
       key: 8,
       route: routes.check_lotto_nav,
       title: "ቅንብር",
-      icon: () => <Icon2 name="ticket" size={25} color={colors.white} />,
+      icon: () => <Icon name="setting" size={25} color={colors.white} />,
     },
   ];
 

@@ -12,4 +12,5 @@ export default {
   tickets: "Check Lotto",
   testimonials: "Testimonials",
   news_details: "News Details",
+  contact_us: "Contact Us",
 };
