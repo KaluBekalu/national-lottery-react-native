@@ -128,7 +128,9 @@ export const Cards = ({ navigation }) => {
           return (
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() => navigation.navigate(i.route)}
+              onPress={() =>
+                navigation.navigate(i.route, { lotteryId: lotteries[0]?.id })
+              }
               key={i.key}
               style={{
                 backgroundColor: colors.white,
