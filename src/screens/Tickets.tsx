@@ -15,8 +15,9 @@ import routes from "../navigations/routes";
 import { CButton } from "../components/CButton";
 import { LottoNumberBox } from "../components/LottoNumberBox";
 import { DataContext } from "../context/DataContext";
-import { DataContextTypes, IWinningNumbers } from "../utils/types";
+import { DataContextTypes, ILottery, IWinningNumbers } from "../utils/types";
 import { Loading } from "../components/Loading";
+import customStyles from "../constants/styles";
 
 const { width, height } = Dimensions.get("window");
 
@@ -26,23 +27,21 @@ export default function Tickets({ navigation, route }) {
   const [currentLotteryId, setCurrentLotteryId] = useState("");
   const { lotteryId } = route.params;
 
-  const [lottoList, setLottoList] = useState([]);
-  const [selectedLotto, setSelectedLotto] = useState(lottoList[0]);
+  const [selected, setSelected] = useState<ILottery>();
+
+  const filter = () => {
+    console.log(currentLotteryId);
+    setSelected(lotteries.filter((i) => i.id === currentLotteryId)[0]);
+  };
 
   useEffect(() => {
+    filter();
     if (!lotteryId) {
       setCurrentLotteryId(lotteries[0]?.id);
     } else {
       setCurrentLotteryId(lotteryId);
     }
-    if (lotteries) {
-      let l: any = [];
-      lotteries.map((i) => {
-        l.push({ name: i.name, value: i.id });
-      });
-      setLottoList(l);
-      setSelectedLotto(lottoList[0]);
-    }
+
     return () => {};
   }, [currentLotteryId]);
 
@@ -62,18 +61,16 @@ export default function Tickets({ navigation, route }) {
         }}
       >
         <CText
-          content="የሎተሪውን አይነት ይsምረጡ"
+          content="የሎተሪውን አይነት ይምረጡ"
           style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
         />
-        <Dropdown
-          data={lottoList}
-          onSelect={(selectedLotto) => {
-            setSelectedLotto(selectedLotto);
-            setCurrentLotteryId(selectedLotto?.value);
-          }}
-          value={selectedLotto?.value}
-          name={selectedLotto?.name}
-          placeholder={selectedLotto?.name}
+        <DropDown
+          data={lotteries}
+          currentLotteryId={currentLotteryId}
+          filter={filter}
+          setCurrentLotteryId={setCurrentLotteryId}
+          selected={selected}
+          setSelected={setSelected}
         />
         <View
           style={{
@@ -119,10 +116,10 @@ export default function Tickets({ navigation, route }) {
           })}
         </View>
       </Gradient>
-      <ScrollView contentContainerStyle={{ height: "100%" }}>
+      <ScrollView contentContainerStyle={{}}>
         {winningNumbersList
           .filter((wn: IWinningNumbers) => {
-            return wn.lotteryId === currentLotteryId;
+            return wn.lotteryId === selected?.id;
           })
           .map((i: IWinningNumbers) => {
             return <Ticket key={i.id} ticket={i} />;
@@ -142,7 +139,7 @@ const Ticket = ({ ticket }: { ticket: IWinningNumbers }) => {
         marginHorizontal: 10,
         borderRadius: 10,
         backgroundColor: colors.white,
-        elevation: 10,
+        elevation: 3,
       }}
     >
       <View
@@ -223,6 +220,92 @@ const Ticket = ({ ticket }: { ticket: IWinningNumbers }) => {
           );
         })}
       </View>
+    </View>
+  );
+};
+
+export const DropDown = ({
+  data,
+  currentLotteryId,
+  setCurrentLotteryId,
+  selected,
+  setSelected,
+  filter,
+}) => {
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    filter();
+  }, [currentLotteryId]);
+
+  return (
+    <View>
+      <TouchableOpacity
+        onPress={() => setExpanded(!expanded)}
+        activeOpacity={0.7}
+        style={{
+          ...customStyles.textInput,
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexDirection: "row",
+        }}
+      >
+        <CText
+          content={selected?.name}
+          style={{
+            fontSize: 15,
+            fontWeight: "bold",
+            color: "value" ? colors.primary : colors.grey,
+          }}
+        />
+        <Icon name="caretdown" size={15} color={colors.primary} />
+      </TouchableOpacity>
+      {expanded ? (
+        <ScrollView
+          style={{
+            backgroundColor: colors.white,
+            position: "absolute",
+            zIndex: 500,
+            width: "100%",
+            marginTop: 5,
+            top: "100%",
+            borderRadius: 5,
+            elevation: 10,
+            maxHeight: 180,
+          }}
+        >
+          {data.map((i, index) => {
+            return (
+              <View
+                key={i.key}
+                style={{
+                  backgroundColor: colors.white,
+                  paddingVertical: 10,
+                  paddingHorizontal: 10,
+                  margin: 2,
+                  borderColor: colors.primary,
+                  borderBottomWidth: index == data.length - 1 ? 0 : 0.7,
+                  alignItems: "flex-start",
+                }}
+              >
+                <TouchableOpacity
+                  style={{}}
+                  onPress={() => {
+                    setSelected(i);
+                    setExpanded(false);
+                  }}
+                >
+                  <CText
+                    key={i.id}
+                    content={i.name}
+                    style={{ fontSize: 15, color: colors.primary }}
+                  />
+                </TouchableOpacity>
+              </View>
+            );
+          })}
+        </ScrollView>
+      ) : null}
     </View>
   );
 };
