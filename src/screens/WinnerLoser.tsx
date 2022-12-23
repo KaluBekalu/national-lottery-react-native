@@ -1,11 +1,10 @@
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import CText from "../components/CText";
 import colors from "../constants/colors";
 import Gradient from "../components/Gradient";
 import { CButton } from "../components/CButton";
 import Lottie from "lottie-react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { LottoNumberBox } from "../components/LottoNumberBox";
 
 const { width, height } = Dimensions.get("window");

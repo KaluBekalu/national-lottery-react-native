@@ -11,7 +11,6 @@ import Icon2 from "react-native-vector-icons/MaterialCommunityIcons";
 import colors from "../constants/colors";
 import { DataContext } from "../context/DataContext";
 import routes from "../navigations/routes";
-import { logout } from "../utils/firebase";
 import CText from "./CText";
 
 const CustomDrawer = ({ navigation }) => {

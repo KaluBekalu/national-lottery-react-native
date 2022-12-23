@@ -9,7 +9,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import CText from "../components/CText";
 import colors from "../constants/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";

@@ -1,7 +1,7 @@
-import { View, Text, Linking, Platform } from "react-native";
+import { View, TouchableOpacity, Linking, Platform } from "react-native";
 import React from "react";
 import CText from "../components/CText";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {} from "react-native-gesture-handler";
 import colors from "../constants/colors";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
