@@ -7,7 +7,7 @@ export const getLotteries = async (cb?: Function) => {
     cb && cb();
     return res.docs;
   } catch (err: any) {
-    console.log("Failure", errorSplitter(err.message), "error");
+    console.log("Failure", err, "error");
     return false;
   }
 };

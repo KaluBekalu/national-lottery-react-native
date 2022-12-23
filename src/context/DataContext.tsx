@@ -1,24 +1,37 @@
 import { View, Text } from "react-native";
 import React, { createContext, useContext, useEffect, useState } from "react";
-
-import { getPosts } from "../utils/firebase";
+import { getLotteries } from "../utils/lotteries";
+import { ILotteries, ILottery } from "../utils/types";
 
 export const DataContext = createContext<any>([]);
 
 const DataContextProvider = ({ children }) => {
-  const [data, setData] = useState<any | []>([]);
+  const [loadingLotteries, setLoadingLotteries] = useState(false);
+  const [lotteries, setLotteries] = useState<any>([]);
 
-  const fetchData = async () => {};
+  const fetchLotteries = async () => {
+    setLoadingLotteries(true);
+    let res = await getLotteries(() => setLoadingLotteries(false));
+    if (res) {
+      let l: ILotteries = [];
+      res.forEach((i) => {
+        l.push({ id: i.id, ...i.data() } as ILottery);
+      });
+      setLotteries(l);
+    }
+  };
 
-  const initialize = async () => {};
-
-  useEffect(() => {}, []);
-
+  useEffect(() => {
+    fetchLotteries();
+    return () => {};
+  }, []);
   return (
     <DataContext.Provider
       value={{
-        data,
-        setData,
+        lotteries,
+        setLotteries,
+        loadingLotteries,
+        setLoadingLotteries,
       }}
     >
       {children}

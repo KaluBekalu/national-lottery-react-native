@@ -1,25 +1,29 @@
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import CText from "./CText";
 import colors from "../constants/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { ILottery } from "../utils/types";
+import { trimText } from "../utils/functions";
 
-export const LotteryCard = ({ item }) => {
+export const LotteryCard = ({ item }: { item: ILottery }) => {
   return (
     <TouchableOpacity
+      activeOpacity={0.5}
       style={{
         flexDirection: "row",
         marginVertical: 3,
         backgroundColor: colors.white,
         marginHorizontal: 10,
         padding: 10,
+        borderRadius: 5,
         alignItems: "center",
         justifyContent: "space-between",
       }}
     >
       <View style={{ flexDirection: "row", alignItems: "center" }}>
-        <View
+        <Image
+          source={{ uri: item?.image }}
           style={{
-            backgroundColor: colors.primary,
             width: 50,
             height: 50,
             borderRadius: 50,
@@ -27,10 +31,16 @@ export const LotteryCard = ({ item }) => {
           }}
         />
         <View>
-          <CText content={item.title} />
+          <CText content={trimText(item.name, 27)} />
           <CText
-            content={item.status}
+            content={trimText(item.description, 47)}
             style={{ fontSize: 12, color: colors.grey }}
+          />
+          <CText
+            content={
+              Date.parse(item?.drawDate) > Date.now() ? "በሽያጭ ላይ" : "እጣ የወጣ"
+            }
+            style={{ fontSize: 12, color: colors.grey, fontStyle: "italic" }}
           />
         </View>
       </View>

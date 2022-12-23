@@ -39,27 +39,7 @@ const DATA = [
 ];
 
 export const Home = ({ navigation }) => {
-  const [loading, setLoading] = useState(false);
-  const [lotteries, setLotteries] = useState<any>();
   const flatListRef = useRef<FlatList>(null);
-
-  const fetchLotteries = async () => {
-    setLoading(true);
-    let res = await getLotteries(() => setLoading(false));
-    if (res) {
-      let l: ILotteries = [];
-      res.forEach((i) => {
-        l.push({ id: i.id, ...i.data() } as ILottery);
-      });
-      console.log(l);
-      setLotteries(l);
-    }
-  };
-
-  useEffect(() => {
-    fetchLotteries();
-    return () => {};
-  }, []);
 
   return (
     <ScrollView>
@@ -75,7 +55,7 @@ export const Home = ({ navigation }) => {
         renderItem={({ item }) => renderItem({ item, navigation })}
       />
 
-      <Cards />
+      <Cards navigation={navigation} />
       <Lotteries />
     </ScrollView>
   );

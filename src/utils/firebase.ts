@@ -4,14 +4,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAc5rtMSsXkP6nZwHpOandKqlIBxVqHJZk",
-  authDomain: "amref-b37c7.firebaseapp.com",
-  projectId: "amref-b37c7",
-  storageBucket: "amref-b37c7.appspot.com",
-  messagingSenderId: "692949853158",
-  appId: "1:692949853158:web:f33470f958adcefb04ac27",
+  apiKey: "AIzaSyCdWipOJO9IdyQwPsEOKA-CdbeOSu80MsY",
+  authDomain: "ethiopian-national-lottery.firebaseapp.com",
+  projectId: "ethiopian-national-lottery",
+  storageBucket: "ethiopian-national-lottery.appspot.com",
+  messagingSenderId: "564788194860",
+  appId: "1:564788194860:web:3538a6f376bdf4ef502b89",
 };
-
 export const errorSplitter = (err: any) => {
   if (typeof err == "object") err = JSON.stringify(err.code);
 

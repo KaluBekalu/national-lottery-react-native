@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import {
   Animated,
   Dimensions,
@@ -10,11 +10,15 @@ import {
 import CText from "./CText";
 import colors from "../constants/colors";
 import Gradient from "./Gradient";
+import routes from "../navigations/routes";
+import { DataContext } from "../context/DataContext";
 
 const { width, height } = Dimensions.get("window");
 
-export const Cards = () => {
+export const Cards = ({ navigation }) => {
   const flatListRef = useRef<FlatList>(null);
+
+  const { lotteries } = useContext(DataContext);
 
   const cardData = [
     {
@@ -35,6 +39,20 @@ export const Cards = () => {
       month: "መስከረም",
       date: "25",
     },
+  ];
+  var months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const renderItem = ({ item }: any) => {
@@ -57,7 +75,7 @@ export const Cards = () => {
           }}
         >
           <CText
-            content={item.title}
+            content={item?.name}
             style={{
               color: colors.white,
               fontSize: 20,
@@ -74,16 +92,17 @@ export const Cards = () => {
             }}
           >
             <CText
-              content={item.month}
+              content={months[new Date(item?.drawDate).getMonth()]}
               style={{
                 color: colors.white,
                 backgroundColor: colors.lightPrimary,
                 textAlign: "center",
+                minWidth: 80,
                 paddingHorizontal: 5,
               }}
             />
             <CText
-              content={item.date}
+              content={new Date(item?.drawDate).getDate().toString()}
               style={{
                 color: colors.primary,
                 fontSize: width * 0.06,
@@ -113,8 +132,8 @@ export const Cards = () => {
         ref={flatListRef}
         scrollEventThrottle={32}
         style={{ width }}
-        data={cardData}
-        keyExtractor={(item: any) => item.key}
+        data={lotteries}
+        keyExtractor={(item: any) => item?.id}
         horizontal
         showsHorizontalScrollIndicator={false}
         renderItem={renderItem}
@@ -130,17 +149,20 @@ export const Cards = () => {
           {
             key: 0,
             title: "አሸናፊ ቁጥሮች",
+            route: routes.check_lotto,
             img: require("../../assets/icons/i-balls.png"),
           },
           {
             key: 2,
             title: "ዜና እና መረጃዎች",
+            route: routes.news_details,
             img: require("../../assets/icons/i-news.png"),
           },
         ].map((i) => {
           return (
             <TouchableOpacity
               activeOpacity={0.7}
+              onPress={() => navigation.navigate(i.route)}
               key={i.key}
               style={{
                 backgroundColor: colors.white,
