@@ -15,7 +15,18 @@ export type IUser = {
   role: string;
 };
 
+export type DataContextTypes = {
+  lotteries: ILotteries;
+  winningNumbersList: IWinningNumbersList;
+  loadingLotteries: boolean;
+  setLotteries: React.Dispatch<any>;
+  setWinningNumbersList: React.Dispatch<any>;
+  setLoadingLotteries: React.Dispatch<React.SetStateAction<boolean>>;
+  fetchLotteries: Function;
+};
+
 export type ILotteries = [ILottery] | any;
+export type IWinningNumbersList = [IWinningNumbers] | any;
 
 export type ILottery = {
   id?: string;
@@ -35,14 +46,7 @@ export type LotteryFormProps = {
 
 export type IWinningNumbers = {
   id?: string;
-  lotteryId: string;
-  numbers: string;
-  prize: string;
   endNumber: string;
-};
-export type WinningNumberFormProps = {
   lotteryId: string;
-  winningNumbers?: IWinningNumbers;
-  fetchWinningNumbers: any;
-  setModalShown: any;
+  numbers: { number: string; prize: string };
 };

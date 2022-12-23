@@ -10,6 +10,7 @@ export const Dropdown = ({
   data,
   onSelect,
   value = "",
+  name = "",
 }) => {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -25,11 +26,11 @@ export const Dropdown = ({
         }}
       >
         <CText
-          content={value ? value : placeholder}
+          content={name ? name : placeholder}
           style={{
             fontSize: 15,
             fontWeight: "bold",
-            color: value ? colors.primary : colors.grey,
+            color: name ? colors.primary : colors.grey,
           }}
         />
         <Icon name="caretdown" size={15} color={colors.primary} />
@@ -65,13 +66,13 @@ export const Dropdown = ({
                 <TouchableOpacity
                   style={{}}
                   onPress={() => {
-                    onSelect(i.value);
+                    onSelect(i);
                     setExpanded(false);
                   }}
                 >
                   <CText
                     key={i.key}
-                    content={i.value}
+                    content={i.name}
                     style={{ fontSize: 15, color: colors.primary }}
                   />
                 </TouchableOpacity>

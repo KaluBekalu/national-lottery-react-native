@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dimensions, TextInput, View } from "react-native";
 import CText from "../components/CText";
 import { Dropdown } from "../components/Dropdown";
@@ -11,7 +11,7 @@ import { LottoNumberBox } from "../components/LottoNumberBox";
 
 const { width, height } = Dimensions.get("window");
 
-export default function CheckLotto({ navigation }) {
+export default function CheckLotto({ navigation, param }) {
   const lottos = [
     {
       key: 1,
@@ -41,6 +41,11 @@ export default function CheckLotto({ navigation }) {
 
   const [selectedLotto, setSelectedLotto] = useState(lottos[0].value);
   const [lottoNumber, setLottoNumber] = useState("");
+
+  useEffect(() => {
+    console.log("first");
+    return () => {};
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>

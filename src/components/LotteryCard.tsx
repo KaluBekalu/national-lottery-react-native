@@ -4,10 +4,19 @@ import colors from "../constants/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { ILottery } from "../utils/types";
 import { trimText } from "../utils/functions";
+import { useNavigation } from "@react-navigation/native";
+import routes from "../navigations/routes";
 
-export const LotteryCard = ({ item }: { item: ILottery }) => {
+export type LotteryCardPropTypes = {
+  item: ILottery;
+  navigation: any;
+};
+export const LotteryCard = ({ item, navigation }: LotteryCardPropTypes) => {
   return (
     <TouchableOpacity
+      onPress={() =>
+        navigation.navigate(routes.check_lotto, { lotteryId: item.id })
+      }
       activeOpacity={0.5}
       style={{
         flexDirection: "row",

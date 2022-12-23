@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Dimensions,
   ScrollView,
@@ -14,39 +14,39 @@ import Gradient from "../components/Gradient";
 import routes from "../navigations/routes";
 import { CButton } from "../components/CButton";
 import { LottoNumberBox } from "../components/LottoNumberBox";
+import { DataContext } from "../context/DataContext";
+import { DataContextTypes, IWinningNumbers } from "../utils/types";
+import { Loading } from "../components/Loading";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Tickets({ navigation }) {
-  const lottos = [
-    {
-      key: 1,
-      value: "መደበኛ (Medebgna)",
-    },
-    {
-      key: 2,
-      value: "አድማስ ዲጅታል (Admase)",
-    },
-    {
-      key: 3,
-      value: "ትንሳኤ (Tensae)",
-    },
-    {
-      key: 4,
-      value: "ልዩ 1 (Liyu 1)",
-    },
-    {
-      key: 5,
-      value: "ልዩ 2 (Liyu 2)",
-    },
-    {
-      key: 6,
-      value: "ቶምቦላ (Tombola)",
-    },
-  ];
+export default function Tickets({ navigation, route }) {
+  const { lotteries, winningNumbersList } =
+    useContext<DataContextTypes>(DataContext);
+  const [currentLotteryId, setCurrentLotteryId] = useState("");
+  const { lotteryId } = route.params;
 
-  const [selectedLotto, setSelectedLotto] = useState(lottos[0].value);
-  const [lottoNumber, setLottoNumber] = useState("");
+  const [lottoList, setLottoList] = useState([]);
+  const [selectedLotto, setSelectedLotto] = useState(lottoList[0]);
+
+  useEffect(() => {
+    if (!lotteryId) {
+      setCurrentLotteryId(lotteries[0]?.id);
+    } else {
+      setCurrentLotteryId(lotteryId);
+    }
+    if (lotteries) {
+      let l: any = [];
+      lotteries.map((i) => {
+        l.push({ name: i.name, value: i.id });
+      });
+      setLottoList(l);
+      setSelectedLotto(lottoList[0]);
+    }
+    return () => {};
+  }, [currentLotteryId]);
+
+  if (!lotteries) return <Loading />;
 
   return (
     <View style={{ flex: 1 }}>
@@ -62,14 +62,18 @@ export default function Tickets({ navigation }) {
         }}
       >
         <CText
-          content="የሎተሪውን አይነት ይምረጡ"
+          content="የሎተሪውን አይነት ይsምረጡ"
           style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
         />
         <Dropdown
-          data={lottos}
-          onSelect={setSelectedLotto}
-          value={selectedLotto}
-          placeholder={selectedLotto}
+          data={lottoList}
+          onSelect={(selectedLotto) => {
+            setSelectedLotto(selectedLotto);
+            setCurrentLotteryId(selectedLotto?.value);
+          }}
+          value={selectedLotto?.value}
+          name={selectedLotto?.name}
+          placeholder={selectedLotto?.name}
         />
         <View
           style={{
@@ -115,16 +119,20 @@ export default function Tickets({ navigation }) {
           })}
         </View>
       </Gradient>
-      <ScrollView style={{}}>
-        {[0, 1, 2, 3, 4, 5].map((i) => {
-          return <Ticket key={i} />;
-        })}
+      <ScrollView contentContainerStyle={{ height: "100%" }}>
+        {winningNumbersList
+          .filter((wn: IWinningNumbers) => {
+            return wn.lotteryId === currentLotteryId;
+          })
+          .map((i: IWinningNumbers) => {
+            return <Ticket key={i.id} ticket={i} />;
+          })}
       </ScrollView>
     </View>
   );
 }
 
-const Ticket = () => {
+const Ticket = ({ ticket }: { ticket: IWinningNumbers }) => {
   return (
     <View
       style={{
@@ -141,6 +149,7 @@ const Ticket = () => {
         style={{
           backgroundColor: colors.primary,
           width: width / 6,
+          minHeight: width / 6,
           alignItems: "center",
           justifyContent: "center",
           marginRight: 10,
@@ -148,16 +157,19 @@ const Ticket = () => {
         }}
       >
         <CText
-          content="1"
+          content={ticket.endNumber}
           style={{ color: colors.white, fontWeight: "bold", fontSize: 40 }}
         />
       </View>
 
       <View style={{ flex: 1 }}>
-        {["123", "98187237", "866278"].map((num) => {
+        {Object.keys(ticket.numbers).map((num) => {
+          const obj = ticket?.numbers[num];
+          const number = ticket?.numbers[num].number?.toString();
+          const prize = ticket?.numbers[num].prize?.toString();
           return (
             <View
-              key={num}
+              key={number}
               style={{
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -173,7 +185,7 @@ const Ticket = () => {
                   marginVertical: 3,
                 }}
               >
-                {num.split("").map((i) => {
+                {number.split("").map((i) => {
                   return (
                     <CText
                       key={Math.random()}
@@ -197,12 +209,14 @@ const Ticket = () => {
                 style={{
                   flexDirection: "row",
                   alignItems: "flex-end",
+                  marginRight: 5,
+                  justifyContent: "center",
                 }}
               >
-                <CText style={{ fontSize: 15, marginRight: 3 }} content="ብር" />
+                <CText style={{ fontSize: 18, marginRight: 3 }} content="ብር" />
                 <CText
-                  style={{ fontWeight: "bold", fontSize: 19 }}
-                  content="12000"
+                  style={{ fontWeight: "bold", fontSize: 18 }}
+                  content={prize}
                 />
               </View>
             </View>

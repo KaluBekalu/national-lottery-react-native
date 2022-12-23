@@ -42,15 +42,12 @@ const DATA = [
 
 export const Home = ({ navigation }) => {
   const flatListRef = useRef<FlatList>(null);
-  const { fetchLotteries, loadingLotteries } = useContext(DataContext);
+  const { reload, loadingLotteries } = useContext(DataContext);
 
   return (
     <ScrollView
       refreshControl={
-        <RefreshControl
-          refreshing={loadingLotteries}
-          onRefresh={fetchLotteries}
-        />
+        <RefreshControl refreshing={loadingLotteries} onRefresh={reload} />
       }
     >
       <Animated.FlatList
@@ -66,7 +63,7 @@ export const Home = ({ navigation }) => {
       />
 
       <Cards navigation={navigation} />
-      <Lotteries />
+      <Lotteries navigation={navigation} />
     </ScrollView>
   );
 };

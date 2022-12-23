@@ -77,4 +77,5 @@ const screenOptions: DrawerNavigationOptions = {
     elevation: 20,
     shadowColor: colors.black,
   },
+  unmountOnBlur: true,
 };
