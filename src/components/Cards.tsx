@@ -12,6 +12,7 @@ import colors from "../constants/colors";
 import Gradient from "./Gradient";
 import routes from "../navigations/routes";
 import { DataContext } from "../context/DataContext";
+import { months } from "../constants";
 
 const { width, height } = Dimensions.get("window");
 
@@ -19,41 +20,6 @@ export const Cards = ({ navigation }) => {
   const flatListRef = useRef<FlatList>(null);
 
   const { lotteries } = useContext(DataContext);
-
-  const cardData = [
-    {
-      key: 0,
-      title: "6ተኛ ዙር የአድማስ ሎተሪ",
-      month: "መስከረም",
-      date: "25",
-    },
-    {
-      key: 1,
-      title: "6ተኛ ዙር የአድማስ ሎተሪ",
-      month: "መስከረም",
-      date: "25",
-    },
-    {
-      key: 2,
-      title: "6ተኛ ዙር የአድማስ ሎተሪ",
-      month: "መስከረም",
-      date: "25",
-    },
-  ];
-  var months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
 
   const renderItem = ({ item }: any) => {
     return (

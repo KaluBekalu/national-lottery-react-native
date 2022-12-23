@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {
   Animated,
   Dimensions,
@@ -9,6 +9,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  RefreshControl,
 } from "react-native";
 import CText from "../components/CText";
 import colors from "../constants/colors";
@@ -18,6 +19,7 @@ import { Lotteries } from "../components/Lotteries";
 import { Cards } from "../components/Cards";
 import { getLotteries } from "../utils/lotteries";
 import { ILotteries, ILottery } from "../utils/types";
+import { DataContext } from "../context/DataContext";
 
 const { width, height } = Dimensions.get("window");
 const DATA = [
@@ -40,9 +42,17 @@ const DATA = [
 
 export const Home = ({ navigation }) => {
   const flatListRef = useRef<FlatList>(null);
+  const { fetchLotteries, loadingLotteries } = useContext(DataContext);
 
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl
+          refreshing={loadingLotteries}
+          onRefresh={fetchLotteries}
+        />
+      }
+    >
       <Animated.FlatList
         ref={flatListRef}
         pagingEnabled

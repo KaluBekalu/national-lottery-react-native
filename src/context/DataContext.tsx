@@ -29,9 +29,10 @@ const DataContextProvider = ({ children }) => {
     <DataContext.Provider
       value={{
         lotteries,
-        setLotteries,
         loadingLotteries,
+        setLotteries,
         setLoadingLotteries,
+        fetchLotteries,
       }}
     >
       {children}
