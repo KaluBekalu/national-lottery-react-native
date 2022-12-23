@@ -13,7 +13,7 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 0,
-      "url": "https://u.expo.dev/7e0febd4-e366-495f-b06e-eb9a179f66e1"
+      "url": "https://u.expo.dev/0e5a1c69-bf3e-463d-9ae1-52a54a629d73"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -24,14 +24,14 @@
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.kalkidanbekalu.national-lottery"
+      "package": "com.kalkidanbekalu.national_lottery"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "7e0febd4-e366-495f-b06e-eb9a179f66e1"
+        "projectId": "0e5a1c69-bf3e-463d-9ae1-52a54a629d73"
       }
     },
     "runtimeVersion": {
