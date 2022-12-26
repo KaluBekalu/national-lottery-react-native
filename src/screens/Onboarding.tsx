@@ -17,6 +17,7 @@ import CText from "../components/CText";
 import colors from "../constants/colors";
 import routes from "../navigations/routes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 
 const { width, height } = Dimensions.get("screen");
 
@@ -44,6 +45,8 @@ export default function Onboarding({ navigation }) {
   const scrollx = React.useRef(new Animated.Value(0)).current;
   const flatListRef = React.useRef<FlatList>(null);
   const [current, setCurrent] = React.useState(0);
+
+  const { t } = useTranslation();
 
   React.useEffect(() => {
     flatListRef?.current.scrollToIndex({
@@ -151,7 +154,7 @@ export default function Onboarding({ navigation }) {
               style={{ alignItems: "center", justifyContent: "center" }}
             >
               <CText
-                content="ዝለል"
+                content={t("skip")}
                 style={{
                   color: colors.white,
                   fontSize: 17,
@@ -177,7 +180,7 @@ export default function Onboarding({ navigation }) {
               }}
             >
               <CText
-                content="ቀጥል"
+                content={t("next")}
                 style={{ fontSize: 17, fontWeight: "bold" }}
               />
             </TouchableOpacity>

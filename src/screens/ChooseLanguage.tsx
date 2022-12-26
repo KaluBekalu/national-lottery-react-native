@@ -10,9 +10,11 @@ import CText from "../components/CText";
 import colors from "../constants/colors";
 import routes from "../navigations/routes";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
 const { width, height } = Dimensions.get("screen");
 
 export default function ChooseLanguage({ navigation }) {
+  const { i18n } = useTranslation();
   return (
     <ImageBackground
       style={[
@@ -35,6 +37,7 @@ export default function ChooseLanguage({ navigation }) {
             title={b.title}
             onPress={async () => {
               await AsyncStorage.setItem("language", b.value);
+              i18n.changeLanguage(b.value);
               navigation.navigate(routes.onboarding);
             }}
           />

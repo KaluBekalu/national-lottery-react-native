@@ -6,12 +6,14 @@ import { ILottery } from "../utils/types";
 import { trimText } from "../utils/functions";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../navigations/routes";
+import { useTranslation } from "react-i18next";
 
 export type LotteryCardPropTypes = {
   item: ILottery;
   navigation: any;
 };
 export const LotteryCard = ({ item, navigation }: LotteryCardPropTypes) => {
+  const { t } = useTranslation();
   return (
     <TouchableOpacity
       onPress={() => {
@@ -47,7 +49,9 @@ export const LotteryCard = ({ item, navigation }: LotteryCardPropTypes) => {
 
           <CText
             content={
-              Date.parse(item?.drawDate) > Date.now() ? "በሽያጭ ላይ" : "እጣ የወጣ"
+              Date.parse(item?.drawDate) > Date.now()
+                ? t("on_sale")
+                : t("drawn")
             }
             style={{ fontSize: 12, color: colors.grey, fontStyle: "italic" }}
           />

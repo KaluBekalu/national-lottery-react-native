@@ -10,6 +10,7 @@ import { LottoNumberBox } from "../components/LottoNumberBox";
 import DropDown from "../components/DropDown";
 import { DataContext } from "../context/DataContext";
 import { DataContextTypes, ILottery } from "../utils/types";
+import { useTranslation } from "react-i18next";
 
 const { width, height } = Dimensions.get("window");
 
@@ -18,6 +19,8 @@ export default function CheckLotto({ navigation, route }) {
   const { lotteries, winningNumbersList } =
     useContext<DataContextTypes>(DataContext);
   const [selected, setSelected] = useState<ILottery>();
+
+  const { t } = useTranslation();
 
   const filter = (ltId) => {
     setSelected(lotteries.filter((i) => i.id === ltId)[0]);
@@ -60,7 +63,7 @@ export default function CheckLotto({ navigation, route }) {
         }}
       >
         <CText
-          content="የሎተሪውን አይነት ይምረጡ"
+          content={t("choose_lottery_type")}
           style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
         />
         <DropDown
@@ -82,12 +85,12 @@ export default function CheckLotto({ navigation, route }) {
             size={25}
           />
           <CText
-            content="መደበኛ በብሔራዊ ሎተሪ አስተዳደር ዕድል አዳራሽ ከምሽቱ 12፡00 ሰዓት ላይ ወጣ፡፡"
+            content={t("officially_released")}
             style={{ color: colors.white }}
           />
         </View>
         <CText
-          content="የእጣ ቁጥሮን ያስገቡ"
+          content={t("enter_the_lot_number")}
           style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
         />
 
@@ -121,7 +124,7 @@ export default function CheckLotto({ navigation, route }) {
 
         <CButton
           onPress={() => checkNumber()}
-          title={"ቁጥሮን ይፈትሹ"}
+          title={t("check_lot_number")}
           style={{
             position: "absolute",
           }}

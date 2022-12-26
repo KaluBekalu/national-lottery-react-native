@@ -12,19 +12,21 @@ import colors from "../constants/colors";
 import { DataContext } from "../context/DataContext";
 import routes from "../navigations/routes";
 import CText from "./CText";
+import { useTranslation } from "react-i18next";
 
 const CustomDrawer = ({ navigation }) => {
+  const { t } = useTranslation();
   const menuOptions = [
     {
       key: 0,
       route: routes.home,
-      title: "መነሻ ገፅ",
+      title: t("home_page"),
       icon: () => <Icon2 name="home" size={25} color={colors.white} />,
     },
     {
       key: 1,
       route: routes.check_lotto_nav,
-      title: "ቁጥሮን ይፈትሹ",
+      title: t("check_lot_number"),
       icon: () => (
         <Icon2 name="check-decagram" size={25} color={colors.white} />
       ),
@@ -32,7 +34,7 @@ const CustomDrawer = ({ navigation }) => {
     {
       key: 2,
       route: routes.tickets,
-      title: "አሸናፊ ቁጥሮች",
+      title: t("winning_numbers"),
       icon: () => (
         <Icon2 name="format-list-numbered" size={25} color={colors.white} />
       ),
@@ -40,31 +42,31 @@ const CustomDrawer = ({ navigation }) => {
     {
       key: 3,
       route: routes.check_lotto_nav,
-      title: "የሎተሪ መውጫ ቀኖች",
+      title: t("draw_dates"),
       icon: () => <Icon name="calendar" size={25} color={colors.white} />,
     },
     {
       key: 4,
       route: routes.check_lotto_nav,
-      title: "ዜና እና መረጃዎች",
+      title: t("news_and_informations"),
       icon: () => <Icon2 name="newspaper" size={25} color={colors.white} />,
     },
     {
       key: 5,
       route: routes.testimonials,
-      title: "የአሸናፊዎች ታሪክ",
+      title: t("winners_story"),
       icon: () => <Icon2 name="nature-people" size={25} color={colors.white} />,
     },
     {
       key: 6,
       route: routes.contact_us,
-      title: "ያግኙን",
+      title: t("contact_us"),
       icon: () => <Icon2 name="phone" size={25} color={colors.white} />,
     },
     {
       key: 7,
       route: routes.check_lotto_nav,
-      title: "ደንብና መመሪያዎች",
+      title: t("rules_and_regulations"),
       icon: () => (
         <Icon2 name="format-list-bulleted" size={25} color={colors.white} />
       ),
@@ -72,7 +74,7 @@ const CustomDrawer = ({ navigation }) => {
     {
       key: 8,
       route: routes.check_lotto_nav,
-      title: "ቅንብር",
+      title: t("settings"),
       icon: () => <Icon name="setting" size={25} color={colors.white} />,
     },
   ];
@@ -143,7 +145,7 @@ const CustomDrawer = ({ navigation }) => {
           justifyContent: "center",
         }}
       >
-        <CText style={{ color: colors.white }} content="Contacts" />
+        <CText style={{ color: colors.white }} content={t("contact_us")} />
         <View
           style={{
             flexDirection: "row",

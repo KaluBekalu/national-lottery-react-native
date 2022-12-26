@@ -8,6 +8,7 @@ import Lottie from "lottie-react-native";
 import { LottoNumberBox } from "../components/LottoNumberBox";
 import formatNumber from "../utils/functions";
 import routes from "../navigations/routes";
+import { t } from "i18next";
 
 const { width, height } = Dimensions.get("window");
 
@@ -44,7 +45,7 @@ const WinnerLoser = ({ route, navigation }) => {
                   }}
                   content={
                     formatNumber(route.params.possibleWinList[0]?.prize) +
-                    ` Birr`
+                    ` ${t("birr")}`
                   }
                 />
                 <CText
@@ -54,7 +55,7 @@ const WinnerLoser = ({ route, navigation }) => {
                     fontWeight: "bold",
                     fontSize: 20,
                   }}
-                  content={"አሸንፈዋል"}
+                  content={t("won")}
                 />
               </>
             ) : null}
@@ -92,8 +93,8 @@ const WinnerLoser = ({ route, navigation }) => {
           <CText
             content={
               route.params.possibleWinList.length
-                ? "እንኳን ደስ አልዎት"
-                : "እባክዎ እደገና ይሞክሩ"
+                ? t("congrats")
+                : t("try_again")
             }
             style={{
               fontSize: 30,
@@ -122,7 +123,7 @@ const WinnerLoser = ({ route, navigation }) => {
           onPress={() => {
             navigation.navigate(routes.contact_us);
           }}
-          title={"ለበለጠ መረጃ"}
+          title={t("more_info")}
           style={{ marginBottom: 15, backgroundColor: colors.white }}
           textStyle={{ color: colors.black }}
         />
@@ -130,7 +131,7 @@ const WinnerLoser = ({ route, navigation }) => {
           onPress={() => {
             navigation.navigate(routes.tickets);
           }}
-          title={"አሸናፊ ቁጥሮችን ይመልከቱ"}
+          title={t("winning_numbers")}
           style={{}}
         />
       </View>

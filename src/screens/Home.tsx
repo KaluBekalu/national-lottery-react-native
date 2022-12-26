@@ -20,6 +20,7 @@ import { Cards } from "../components/Cards";
 import { getLotteries } from "../utils/lotteries";
 import { ILotteries, ILottery } from "../utils/types";
 import { DataContext } from "../context/DataContext";
+import { useTranslation } from "react-i18next";
 
 const { width, height } = Dimensions.get("window");
 const DATA = [
@@ -43,7 +44,7 @@ const DATA = [
 export const Home = ({ navigation }) => {
   const flatListRef = useRef<FlatList>(null);
   const { reload, loadingLotteries } = useContext(DataContext);
-
+  const { t, i18n } = useTranslation();
   return (
     <ScrollView
       refreshControl={
@@ -63,10 +64,12 @@ export const Home = ({ navigation }) => {
       />
 
       <Cards navigation={navigation} />
-      <CText
-        style={{ padding: 10, fontWeight: "bold" }}
-        content="የሚፈልጉትን ሎተሪ ይምረጡ"
-      />
+      <TouchableOpacity onPress={() => {}}>
+        <CText
+          style={{ padding: 10, fontWeight: "bold" }}
+          content={t("choose_lottery_type")}
+        />
+      </TouchableOpacity>
       <Lotteries navigation={navigation} />
     </ScrollView>
   );

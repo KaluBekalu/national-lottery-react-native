@@ -13,12 +13,13 @@ import Gradient from "./Gradient";
 import routes from "../navigations/routes";
 import { DataContext } from "../context/DataContext";
 import { months } from "../constants";
+import { useTranslation } from "react-i18next";
 
 const { width, height } = Dimensions.get("window");
 
 export const Cards = ({ navigation }) => {
   const flatListRef = useRef<FlatList>(null);
-
+  const { t } = useTranslation();
   const { lotteries } = useContext(DataContext);
 
   const renderItem = ({ item }: any) => {
@@ -79,7 +80,7 @@ export const Cards = ({ navigation }) => {
               }}
             />
             <CText
-              content={"ይወጣል"}
+              content={t("will_be_drawn")}
               style={{
                 color: colors.primary,
                 textAlign: "center",
@@ -115,13 +116,13 @@ export const Cards = ({ navigation }) => {
         {[
           {
             key: 0,
-            title: "አሸናፊ ቁጥሮች",
+            title: t("winning_numbers"),
             route: routes.check_lotto,
             img: require("../../assets/icons/i-balls.png"),
           },
           {
             key: 2,
-            title: "ዜና እና መረጃዎች",
+            title: t("news_and_informations"),
             route: routes.news_details,
             img: require("../../assets/icons/i-news.png"),
           },

@@ -18,11 +18,13 @@ import NewsDetails from "../screens/NewsDetails";
 import ContactUs from "../screens/ContactUs";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useTranslation } from "react-i18next";
 
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigator({}) {
   const navigation = useNavigation();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -50,32 +52,32 @@ export default function DrawerNavigator({}) {
       >
         <Drawer.Screen
           name={routes.home}
-          options={{ headerTitle: "ብሔራዊ ሎተሪ አስተዳደር" }}
+          options={{ headerTitle: t("national_lottery") }}
           component={Home}
         />
         <Drawer.Screen
           name={routes.tickets}
-          options={{ headerTitle: "የእጣ ቁጥር  ማጣሪያ" }}
+          options={{ headerTitle: t("lot_number_filter") }}
           component={Tickets}
         />
         <Drawer.Screen
           name={routes.check_lotto_nav}
-          options={{ headerTitle: "የእጣ ቁጥሮች" }}
+          options={{ headerTitle: t("lottery_numbers") }}
           component={CheckLottoNav}
         />
         <Drawer.Screen
           name={routes.testimonials}
-          options={{ headerTitle: "የአሸናፊዎች ታሪክ" }}
+          options={{ headerTitle: t("winners_story") }}
           component={Testimonials}
         />
         <Drawer.Screen
           name={routes.news_details}
-          options={{ headerTitle: "አድማስ ድጂታል ሎተሪ" }}
+          options={{ headerTitle: t("admas_digital_Lottery") }}
           component={NewsDetails}
         />
         <Drawer.Screen
           name={routes.contact_us}
-          options={{ headerTitle: "ያግኙን" }}
+          options={{ headerTitle: t("contact_us") }}
           component={ContactUs}
         />
       </Drawer.Navigator>

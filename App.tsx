@@ -6,6 +6,7 @@ import DataContextProvider, { DataContext } from "./src/context/DataContext";
 import { useFonts } from "expo-font";
 import OnBoardingNavigation from "./src/navigations/OnBoardingNavigation";
 import { CardStyleInterpolators } from "@react-navigation/stack";
+import "./i18n.config";
 
 // Stack
 import { createStackNavigator } from "@react-navigation/stack";
