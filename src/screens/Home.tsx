@@ -63,6 +63,10 @@ export const Home = ({ navigation }) => {
       />
 
       <Cards navigation={navigation} />
+      <CText
+        style={{ padding: 10, fontWeight: "bold" }}
+        content="የሚፈልጉትን ሎተሪ ይምረጡ"
+      />
       <Lotteries navigation={navigation} />
     </ScrollView>
   );
