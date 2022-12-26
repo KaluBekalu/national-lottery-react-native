@@ -9,7 +9,7 @@ export default {
   home: "Home",
   check_lotto: "Check Lotto",
   winner_loser: "Winner Loser",
-  tickets: "Check Lotto",
+  tickets: "TIckets",
   testimonials: "Testimonials",
   news_details: "News Details",
   contact_us: "Contact Us",

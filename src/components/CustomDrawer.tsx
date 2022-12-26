@@ -14,8 +14,6 @@ import routes from "../navigations/routes";
 import CText from "./CText";
 
 const CustomDrawer = ({ navigation }) => {
-  const { fetchPosts } = useContext(DataContext);
-
   const menuOptions = [
     {
       key: 0,
@@ -197,7 +195,7 @@ const DrawerButton = ({
         marginVertical: 5,
         backgroundColor: active ? colors.subtleWhite : colors.transparent,
         paddingHorizontal: 30,
-        marginHorizontal: 10,
+        marginHorizontal: 5,
         paddingVertical: 10,
         borderRadius: 5,
         alignItems: "center",
@@ -206,7 +204,7 @@ const DrawerButton = ({
       <LeftIcon />
       <CText
         content={title}
-        style={{ marginLeft: 10, color: colors.white, fontSize: 17 }}
+        style={{ marginLeft: 10, color: colors.white, fontSize: 16 }}
       />
       <Icon
         name="right"

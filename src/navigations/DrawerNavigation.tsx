@@ -16,6 +16,8 @@ import Tickets from "../screens/Tickets";
 import Testimonials from "../screens/Testimonials";
 import NewsDetails from "../screens/NewsDetails";
 import ContactUs from "../screens/ContactUs";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Drawer = createDrawerNavigator();
 
@@ -31,7 +33,20 @@ export default function DrawerNavigator({}) {
       />
       <Drawer.Navigator
         drawerContent={(props) => <CustomDrawer navigation={navigation} />}
-        screenOptions={screenOptions}
+        screenOptions={() => {
+          return {
+            headerTitleStyle: { fontWeight: "bold" },
+            headerTitleAlign: "center",
+            headerTintColor: colors.white,
+            headerStyle: {
+              backgroundColor: colors.primary,
+              elevation: 20,
+              shadowColor: colors.black,
+            },
+
+            unmountOnBlur: true,
+          };
+        }}
       >
         <Drawer.Screen
           name={routes.home}
@@ -68,14 +83,19 @@ export default function DrawerNavigator({}) {
   );
 }
 
-const screenOptions: DrawerNavigationOptions = {
-  headerTitleStyle: { fontWeight: "bold" },
-  headerTitleAlign: "center",
-  headerTintColor: colors.white,
-  headerStyle: {
-    backgroundColor: colors.primary,
-    elevation: 20,
-    shadowColor: colors.black,
-  },
-  unmountOnBlur: true,
-};
+// HEADER LEFT
+// headerLeft: () => {
+//   return (
+//     <TouchableOpacity
+//       onPress={() => navigation.goBack()}
+//       style={{
+//         padding: 5,
+//         height: "100%",
+//         alignItems: "center",
+//         justifyContent: "center",
+//       }}
+//     >
+//       <Icon name="arrow-left" size={25} color={colors.white} />
+//     </TouchableOpacity>
+//   );
+// },

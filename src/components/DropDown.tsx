@@ -1,17 +1,13 @@
-import { useState } from "react";
-import { View, TouchableOpacity, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ScrollView, View, TouchableOpacity } from "react-native";
 import CText from "./CText";
+import Icon from "react-native-vector-icons/AntDesign";
 import colors from "../constants/colors";
 import customStyles from "../constants/styles";
-import Icon from "react-native-vector-icons/AntDesign";
 
-export const Dropdown = ({
-  placeholder = "Select",
-  data,
-  onSelect,
-  value = "",
-}) => {
+export default function DropDown({ data, selected, setSelected }) {
   const [expanded, setExpanded] = useState(false);
+
   return (
     <View>
       <TouchableOpacity
@@ -25,11 +21,11 @@ export const Dropdown = ({
         }}
       >
         <CText
-          content={value ? value : placeholder}
+          content={selected?.name}
           style={{
             fontSize: 15,
             fontWeight: "bold",
-            color: value ? colors.primary : colors.grey,
+            color: "value" ? colors.primary : colors.grey,
           }}
         />
         <Icon name="caretdown" size={15} color={colors.primary} />
@@ -51,7 +47,7 @@ export const Dropdown = ({
           {data.map((i, index) => {
             return (
               <View
-                key={i.key}
+                key={i.id}
                 style={{
                   backgroundColor: colors.white,
                   paddingVertical: 10,
@@ -65,13 +61,13 @@ export const Dropdown = ({
                 <TouchableOpacity
                   style={{}}
                   onPress={() => {
-                    onSelect(i.value);
+                    setSelected(i);
                     setExpanded(false);
                   }}
                 >
                   <CText
-                    key={i.key}
-                    content={i.value}
+                    key={i.id}
+                    content={i.name}
                     style={{ fontSize: 15, color: colors.primary }}
                   />
                 </TouchableOpacity>
@@ -82,4 +78,4 @@ export const Dropdown = ({
       ) : null}
     </View>
   );
-};
+}

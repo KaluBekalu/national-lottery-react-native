@@ -14,9 +14,12 @@ export type LotteryCardPropTypes = {
 export const LotteryCard = ({ item, navigation }: LotteryCardPropTypes) => {
   return (
     <TouchableOpacity
-      onPress={() =>
-        navigation.navigate(routes.check_lotto, { lotteryId: item.id })
-      }
+      onPress={() => {
+        navigation.navigate(routes.check_lotto_nav, {
+          screen: routes.check_lotto,
+          params: { lotteryId: item.id },
+        });
+      }}
       activeOpacity={0.5}
       style={{
         flexDirection: "row",
@@ -40,11 +43,8 @@ export const LotteryCard = ({ item, navigation }: LotteryCardPropTypes) => {
           }}
         />
         <View>
-          <CText content={trimText(item.name, 27)} />
-          <CText
-            content={trimText(item.description, 47)}
-            style={{ fontSize: 12, color: colors.grey }}
-          />
+          <CText content={trimText(item.name, 25)} />
+
           <CText
             content={
               Date.parse(item?.drawDate) > Date.now() ? "በሽያጭ ላይ" : "እጣ የወጣ"

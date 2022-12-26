@@ -1,49 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Dimensions, TextInput, View } from "react-native";
 import CText from "../components/CText";
-import { Dropdown } from "../components/Dropdown";
 import Icon from "react-native-vector-icons/AntDesign";
 import colors from "../constants/colors";
 import Gradient from "../components/Gradient";
 import routes from "../navigations/routes";
 import { CButton } from "../components/CButton";
 import { LottoNumberBox } from "../components/LottoNumberBox";
+import DropDown from "../components/DropDown";
+import { DataContext } from "../context/DataContext";
+import { DataContextTypes, ILottery } from "../utils/types";
 
 const { width, height } = Dimensions.get("window");
 
-export default function CheckLotto({ navigation, param }) {
-  const lottos = [
-    {
-      key: 1,
-      value: "መደበኛ (Medebgna)",
-    },
-    {
-      key: 2,
-      value: "አድማስ ዲጅታል (Admase)",
-    },
-    {
-      key: 3,
-      value: "ትንሳኤ (Tensae)",
-    },
-    {
-      key: 4,
-      value: "ልዩ 1 (Liyu 1)",
-    },
-    {
-      key: 5,
-      value: "ልዩ 2 (Liyu 2)",
-    },
-    {
-      key: 6,
-      value: "ቶምቦላ (Tombola)",
-    },
-  ];
-
-  const [selectedLotto, setSelectedLotto] = useState(lottos[0].value);
+export default function CheckLotto({ navigation, route }) {
   const [lottoNumber, setLottoNumber] = useState("");
+  const { lotteries, winningNumbersList } =
+    useContext<DataContextTypes>(DataContext);
+  const [selected, setSelected] = useState<ILottery>();
+
+  const filter = (ltId) => {
+    setSelected(lotteries.filter((i) => i.id === ltId)[0]);
+  };
+
+  const checkNumber = () => {
+    if (lottoNumber.length != 7) return;
+
+    const lotteryNumbers = winningNumbersList
+      .filter((i) => i.lotteryId == selected.id)
+      .map((i) => i.numbers)[0];
+    const possibleWinList = lotteryNumbers.filter((i) => {
+      if (lottoNumber.endsWith(i.number.toString())) {
+        return i;
+      }
+    });
+
+    navigation.navigate(routes.winner_loser, {
+      lotteryId: selected.id,
+      lottoNumber,
+      possibleWinList,
+    });
+  };
 
   useEffect(() => {
-    console.log("first");
+    filter(route.params?.lotteryId || lotteries[0].id);
     return () => {};
   }, []);
 
@@ -63,11 +63,10 @@ export default function CheckLotto({ navigation, param }) {
           content="የሎተሪውን አይነት ይምረጡ"
           style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
         />
-        <Dropdown
-          data={lottos}
-          onSelect={setSelectedLotto}
-          value={selectedLotto}
-          placeholder={selectedLotto}
+        <DropDown
+          data={lotteries}
+          selected={selected}
+          setSelected={setSelected}
         />
         <View
           style={{
@@ -121,7 +120,7 @@ export default function CheckLotto({ navigation, param }) {
         </View>
 
         <CButton
-          onPress={() => navigation.navigate(routes.winner_loser)}
+          onPress={() => checkNumber()}
           title={"ቁጥሮን ይፈትሹ"}
           style={{
             position: "absolute",

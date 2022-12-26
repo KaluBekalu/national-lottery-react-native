@@ -27,6 +27,7 @@ export const Cards = ({ navigation }) => {
         style={{
           elevation: 5,
           width: "auto",
+          minWidth: 300,
           margin: 10,
           padding: 10,
           borderRadius: 10,
