@@ -13,10 +13,11 @@ import {
   ImageBackground,
 } from "react-native";
 
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import CText from "../components/CText";
 import colors from "../constants/colors";
 import routes from "../navigations/routes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const { width, height } = Dimensions.get("screen");
 
 const bgs = ["#fff", colors.lightPrimary, "#FF63ED", "#B98EFF"];
@@ -51,7 +52,8 @@ export default function Onboarding({ navigation }) {
     });
   }, [current]);
 
-  const handleFinish = () => {
+  const handleFinish = async () => {
+    await AsyncStorage.setItem("onboarding", "true");
     return navigation.navigate(routes.drawer);
   };
 

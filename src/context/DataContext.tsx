@@ -12,6 +12,7 @@ import {
 export const DataContext = createContext<any>([]);
 
 const DataContextProvider = ({ children }) => {
+  const [language, setLanguage] = useState("en");
   const [loadingLotteries, setLoadingLotteries] = useState(false);
   const [loadingNumbers, setLoadingNumbers] = useState(false);
   const [lotteries, setLotteries] = useState<ILotteries | []>([]);
@@ -61,6 +62,8 @@ const DataContextProvider = ({ children }) => {
           loadingNumbers,
           winningNumbersList,
           refreshing: loadingLotteries || loadingNumbers,
+          language,
+          setLanguage,
           reload,
           setWinningNumbersList,
           setLoadingNumbers,

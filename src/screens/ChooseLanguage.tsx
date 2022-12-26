@@ -9,6 +9,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import CText from "../components/CText";
 import colors from "../constants/colors";
 import routes from "../navigations/routes";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 const { width, height } = Dimensions.get("screen");
 
 export default function ChooseLanguage({ navigation }) {
@@ -25,14 +26,15 @@ export default function ChooseLanguage({ navigation }) {
       source={require("../../assets/splash-screen.png")}
     >
       {[
-        { key: 0, title: "አማርኛ" },
-        { key: 1, title: "English" },
+        { key: 0, title: "አማርኛ", value: "am" },
+        { key: 1, title: "English", value: "en" },
       ].map((b) => {
         return (
           <Button
             key={b.key}
             title={b.title}
-            onPress={() => {
+            onPress={async () => {
+              await AsyncStorage.setItem("language", b.value);
               navigation.navigate(routes.onboarding);
             }}
           />
