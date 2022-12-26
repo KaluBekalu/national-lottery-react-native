@@ -13,4 +13,5 @@ export default {
   testimonials: "Testimonials",
   news_details: "News Details",
   contact_us: "Contact Us",
+  settings: "Settings",
 };

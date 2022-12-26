@@ -19,6 +19,7 @@ import ContactUs from "../screens/ContactUs";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useTranslation } from "react-i18next";
+import Settings from "../screens/Settings";
 
 const Drawer = createDrawerNavigator();
 
@@ -79,6 +80,11 @@ export default function DrawerNavigator({}) {
           name={routes.contact_us}
           options={{ headerTitle: t("contact_us") }}
           component={ContactUs}
+        />
+        <Drawer.Screen
+          name={routes.settings}
+          options={{ headerTitle: t("settings") }}
+          component={Settings}
         />
       </Drawer.Navigator>
     </>

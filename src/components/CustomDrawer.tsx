@@ -73,7 +73,7 @@ const CustomDrawer = ({ navigation }) => {
     },
     {
       key: 8,
-      route: routes.check_lotto_nav,
+      route: routes.settings,
       title: t("settings"),
       icon: () => <Icon name="setting" size={25} color={colors.white} />,
     },
