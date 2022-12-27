@@ -6,6 +6,7 @@ import {
   Image,
   View,
   TouchableOpacity,
+  ToastAndroid,
 } from "react-native";
 import CText from "./CText";
 import colors from "../constants/colors";

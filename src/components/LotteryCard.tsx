@@ -1,4 +1,4 @@
-import { View, TouchableOpacity, Image } from "react-native";
+import { View, TouchableOpacity, Image, ToastAndroid } from "react-native";
 import CText from "./CText";
 import colors from "../constants/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -14,9 +14,16 @@ export type LotteryCardPropTypes = {
 };
 export const LotteryCard = ({ item, navigation }: LotteryCardPropTypes) => {
   const { t } = useTranslation();
+
+  const showToast = () => {
+    ToastAndroid.show(t("lottery_not_drawn_yet"), ToastAndroid.SHORT);
+  };
   return (
     <TouchableOpacity
       onPress={() => {
+        if (Date.parse(item?.drawDate) > Date.now()) {
+          return showToast();
+        }
         navigation.navigate(routes.check_lotto_nav, {
           screen: routes.check_lotto,
           params: { lotteryId: item.id },
