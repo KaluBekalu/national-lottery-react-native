@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import CText from "../components/CText";
 
@@ -6,7 +6,7 @@ const NewsDetails = ({ route }) => {
   const news = route.params.news;
 
   return (
-    <View style={{ padding: 10 }}>
+    <ScrollView style={{ padding: 10 }}>
       <CText
         content={news.title}
         style={{ fontWeight: "bold", marginBottom: 10 }}
@@ -24,7 +24,7 @@ const NewsDetails = ({ route }) => {
         style={{ marginVertical: 20, textAlign: "justify" }}
         content={news.description}
       />
-    </View>
+    </ScrollView>
   );
 };
 
