@@ -32,7 +32,6 @@ export default function Tickets({ navigation, route }) {
   };
 
   useEffect(() => {
-    console.log(route);
     filter();
     if (!lotteryId) {
       setCurrentLotteryId(lotteries[0]?.id);

@@ -43,7 +43,7 @@ const DATA = [
 
 export const Home = ({ navigation }) => {
   const flatListRef = useRef<FlatList>(null);
-  const { reload, loadingLotteries } = useContext(DataContext);
+  const { reload, loadingLotteries, news } = useContext(DataContext);
   const { t, i18n } = useTranslation();
   return (
     <ScrollView
@@ -56,7 +56,7 @@ export const Home = ({ navigation }) => {
         pagingEnabled
         scrollEventThrottle={32}
         style={{ width }}
-        data={DATA}
+        data={news}
         keyExtractor={(item: any) => item.key}
         horizontal
         showsHorizontalScrollIndicator={false}
@@ -78,7 +78,7 @@ export const Home = ({ navigation }) => {
 const renderItem = ({ item, navigation }: any) => {
   return (
     <View
-      key={item.key}
+      key={item.id}
       style={{
         width,
         alignItems: "center",
@@ -87,7 +87,10 @@ const renderItem = ({ item, navigation }: any) => {
       }}
     >
       <View style={{ borderRadius: 10, overflow: "hidden", elevation: 5 }}>
-        <Image source={item.img} style={{ width: width - 20 }} />
+        <Image
+          source={{ uri: item.image }}
+          style={{ width: width - 20, height: 200 }}
+        />
 
         <Gradient
           style={{
@@ -102,7 +105,9 @@ const renderItem = ({ item, navigation }: any) => {
           end={{ x: 1, y: 1 }}
         >
           <TouchableOpacity
-            onPress={() => navigation.navigate(routes.news_details)}
+            onPress={() =>
+              navigation.navigate(routes.news_details, { news: item })
+            }
             activeOpacity={0.7}
           >
             <CText
@@ -113,7 +118,7 @@ const renderItem = ({ item, navigation }: any) => {
                 fontSize: 20,
                 width: "90%",
               }}
-              content="ወ/ሮ  የዚዳ ጀበል በ አድማስ ድጂታል ሎተሪ 5ኛ ዕጣ 160 ሺህ ብር አሸናፊ"
+              content={item.title}
             />
           </TouchableOpacity>
         </Gradient>

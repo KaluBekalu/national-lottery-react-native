@@ -15,6 +15,7 @@ import Tickets from "./src/screens/Tickets";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext, useEffect, useState } from "react";
 import { Loading } from "./src/components/Loading";
+import { useTranslation } from "react-i18next";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -41,10 +42,13 @@ const AppNav = () => {
   const { setLanguage } = useContext(DataContext);
   const [onboardingDone, setOnboardingDone] = useState(false);
   const [ready, setReady] = useState(false);
+  const { i18n } = useTranslation();
+
   const getItemsLocalstorage = async () => {
     let lan = await AsyncStorage.getItem("language");
     let onb = await AsyncStorage.getItem("onboarding");
     setLanguage(lan || "en");
+    i18n.changeLanguage(lan);
     setOnboardingDone(Boolean(onb) || false);
     setReady(true);
   };

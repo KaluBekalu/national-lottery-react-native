@@ -50,3 +50,14 @@ export type IWinningNumbers = {
   lotteryId: string;
   numbers: { number: string; prize: string };
 };
+
+// NEWS
+export type INews = {
+  id?: string;
+  title: string;
+  image: string;
+  description: string;
+  status: "Published" | "Draft";
+};
+
+export type INewsList = [INews] | any;

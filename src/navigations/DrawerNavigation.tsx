@@ -16,10 +16,9 @@ import Tickets from "../screens/Tickets";
 import Testimonials from "../screens/Testimonials";
 import NewsDetails from "../screens/NewsDetails";
 import ContactUs from "../screens/ContactUs";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { useTranslation } from "react-i18next";
 import Settings from "../screens/Settings";
+import HomeNav from "./HomeNav";
 
 const Drawer = createDrawerNavigator();
 
@@ -41,22 +40,18 @@ export default function DrawerNavigator({}) {
             headerTitleStyle: { fontWeight: "bold" },
             headerTitleAlign: "center",
             headerTintColor: colors.white,
-            headerStyle: {
-              backgroundColor: colors.primary,
-              elevation: 20,
-              shadowColor: colors.black,
-            },
+            headerStyle: headerStyle,
 
             unmountOnBlur: true,
           };
         }}
       >
         <Drawer.Screen
-          name={routes.home}
-          options={{ headerTitle: t("national_lottery") }}
-          component={Home}
+          name={routes.home_nav}
+          options={{ headerShown: false, headerTitle: t("national_lottery") }}
+          component={HomeNav}
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           name={routes.tickets}
           options={{ headerTitle: t("lot_number_filter") }}
           component={Tickets}
@@ -70,13 +65,13 @@ export default function DrawerNavigator({}) {
           name={routes.testimonials}
           options={{ headerTitle: t("winners_story") }}
           component={Testimonials}
-        />
-        <Drawer.Screen
+        /> */}
+        {/* <Drawer.Screen
           name={routes.news_details}
           options={{ headerTitle: t("admas_digital_Lottery") }}
           component={NewsDetails}
-        />
-        <Drawer.Screen
+        /> */}
+        {/* <Drawer.Screen
           name={routes.contact_us}
           options={{ headerTitle: t("contact_us") }}
           component={ContactUs}
@@ -85,25 +80,14 @@ export default function DrawerNavigator({}) {
           name={routes.settings}
           options={{ headerTitle: t("settings") }}
           component={Settings}
-        />
+        /> */}
       </Drawer.Navigator>
     </>
   );
 }
 
-// HEADER LEFT
-// headerLeft: () => {
-//   return (
-//     <TouchableOpacity
-//       onPress={() => navigation.goBack()}
-//       style={{
-//         padding: 5,
-//         height: "100%",
-//         alignItems: "center",
-//         justifyContent: "center",
-//       }}
-//     >
-//       <Icon name="arrow-left" size={25} color={colors.white} />
-//     </TouchableOpacity>
-//   );
-// },
+export const headerStyle = {
+  backgroundColor: colors.primary,
+  elevation: 20,
+  shadowColor: colors.black,
+};

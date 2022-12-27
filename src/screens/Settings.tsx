@@ -4,6 +4,7 @@ import DropDown from "../components/DropDown";
 import CText from "../components/CText";
 import { useTranslation } from "react-i18next";
 import colors from "../constants/colors";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Settings = () => {
   const { i18n, t } = useTranslation();
@@ -26,7 +27,8 @@ const Settings = () => {
             borderRadius: 5,
             borderColor: i18n.language === "am" ? colors.primary : colors.grey,
           }}
-          onPress={() => {
+          onPress={async () => {
+            await AsyncStorage.setItem("language", "am");
             i18n.changeLanguage("am");
           }}
         >
@@ -47,7 +49,8 @@ const Settings = () => {
             borderRadius: 5,
             borderColor: i18n.language == "en" ? colors.primary : colors.grey,
           }}
-          onPress={() => {
+          onPress={async () => {
+            await AsyncStorage.setItem("language", "en");
             i18n.changeLanguage("en");
           }}
         >

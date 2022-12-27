@@ -5,6 +5,7 @@ import {
   getDocs,
   orderBy,
   query,
+  where,
 } from "firebase/firestore";
 import { db, errorSplitter } from "./firebase";
 
@@ -39,6 +40,18 @@ export const getLotteryById = async (id: string, cb?: Function) => {
     return res.data();
   } catch (err: any) {
     console.log("Failure", errorSplitter(err.message), "error");
+    return false;
+  }
+};
+
+// NEWS
+export const getNews = async (cb?: Function) => {
+  try {
+    const q = query(collection(db, "news"), where("status", "==", "Published"));
+    let res = await getDocs(q);
+    return res.docs;
+  } catch (err: any) {
+    console.log("Failure", err, "error");
     return false;
   }
 };

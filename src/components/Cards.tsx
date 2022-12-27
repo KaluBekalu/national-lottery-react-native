@@ -118,21 +118,21 @@ export const Cards = ({ navigation }) => {
             key: 0,
             title: t("winning_numbers"),
             route: routes.check_lotto,
+            onPress: () => navigation.navigate(routes.tickets),
             img: require("../../assets/icons/i-balls.png"),
           },
           {
             key: 2,
             title: t("news_and_informations"),
-            route: routes.news_details,
+            route: routes.news,
+            onPress: () => navigation.navigate(routes.news),
             img: require("../../assets/icons/i-news.png"),
           },
         ].map((i) => {
           return (
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() =>
-                navigation.navigate(i.route, { lotteryId: lotteries[0]?.id })
-              }
+              onPress={() => i.onPress()}
               key={i.key}
               style={{
                 backgroundColor: colors.white,
