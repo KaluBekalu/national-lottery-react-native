@@ -39,15 +39,15 @@ const CustomDrawer = ({ navigation }) => {
         <Icon2 name="format-list-numbered" size={25} color={colors.white} />
       ),
     },
-    {
-      key: 3,
-      route: routes.check_lotto_nav,
-      title: t("draw_dates"),
-      icon: () => <Icon name="calendar" size={25} color={colors.white} />,
-    },
+    // {
+    //   key: 3,
+    //   route: routes.check_lotto_nav,
+    //   title: t("draw_dates"),
+    //   icon: () => <Icon name="calendar" size={25} color={colors.white} />,
+    // },
     {
       key: 4,
-      route: routes.check_lotto_nav,
+      route: routes.news,
       title: t("news_and_informations"),
       icon: () => <Icon2 name="newspaper" size={25} color={colors.white} />,
     },

@@ -6,6 +6,7 @@ import colors from "../constants/colors";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import FAIcons from "react-native-vector-icons/FontAwesome";
+import { useTranslation } from "react-i18next";
 
 const ContactUs = () => {
   const contacts = [
@@ -29,21 +30,24 @@ const ContactUs = () => {
     },
   ];
 
+  const { t } = useTranslation();
+
   return (
     <View style={{ padding: 10 }}>
-      <CText
-        content="Contact us"
+      {/* <CText
+        content={t("contact_us")}
         style={{
           textAlign: "center",
           fontWeight: "bold",
           marginVertical: 10,
           fontSize: 25,
         }}
-      />
+      /> */}
       <View style={{}}>
         {contacts.map((contact) => {
           return (
             <TouchableOpacity
+              key={Math.random()}
               onPress={() => Linking.openURL(contact.link)}
               style={{ flexDirection: "row", alignItems: "center" }}
             >
