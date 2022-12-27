@@ -16,6 +16,9 @@ import { DataContext } from "../context/DataContext";
 import { DataContextTypes, ILottery, IWinningNumbers } from "../utils/types";
 import { Loading } from "../components/Loading";
 import DropDown from "../components/DropDown";
+import { useTranslation } from "react-i18next";
+import { t } from "i18next";
+import formatNumber from "../utils/functions";
 
 const { width, height } = Dimensions.get("window");
 
@@ -26,7 +29,7 @@ export default function Tickets({ navigation, route }) {
   const lotteryId = route.params?.lotteryId;
 
   const [selected, setSelected] = useState<ILottery>();
-
+  const { t } = useTranslation();
   const filter = () => {
     setSelected(lotteries.filter((i) => i.id === currentLotteryId)[0]);
   };
@@ -58,7 +61,7 @@ export default function Tickets({ navigation, route }) {
         }}
       >
         <CText
-          content="የሎተሪውን አይነት ይምረጡ"
+          content={t("choose_lottery_type")}
           style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
         />
         <DropDown
@@ -80,9 +83,9 @@ export default function Tickets({ navigation, route }) {
           }}
         >
           {[
-            { key: 1, title: "መጨረሻ ቁጥር" },
-            { key: 2, title: "ሙሉ/መጨረሻ ቁ." },
-            { key: 3, title: "ዕጣ ብር" },
+            { key: 1, title: t("end_number") },
+            { key: 2, title: t("all_or_ending_number") },
+            { key: 3, title: t("prize") },
           ].map((i) => {
             return (
               <TouchableOpacity
@@ -102,7 +105,7 @@ export default function Tickets({ navigation, route }) {
                     color: colors.primary,
                     fontWeight: "bold",
                     margin: 5,
-                    fontSize: 15,
+                    fontSize: 12,
                   }}
                 />
               </TouchableOpacity>
@@ -139,17 +142,17 @@ const Ticket = ({ ticket }: { ticket: IWinningNumbers }) => {
       <View
         style={{
           backgroundColor: colors.primary,
-          width: width / 6,
-          minHeight: width / 6,
+          width: width / 7.5,
+          minHeight: width / 7.5,
           alignItems: "center",
           justifyContent: "center",
           marginRight: 10,
-          borderRadius: 10,
+          borderRadius: 5,
         }}
       >
         <CText
           content={ticket.endNumber}
-          style={{ color: colors.white, fontWeight: "bold", fontSize: 40 }}
+          style={{ color: colors.white, fontWeight: "bold", fontSize: 30 }}
         />
       </View>
 
@@ -157,7 +160,8 @@ const Ticket = ({ ticket }: { ticket: IWinningNumbers }) => {
         {Object.keys(ticket.numbers).map((num) => {
           const obj = ticket?.numbers[num];
           const number = ticket?.numbers[num].number?.toString();
-          const prize = ticket?.numbers[num].prize?.toString();
+          let prize = ticket?.numbers[num].prize?.toString();
+          prize = formatNumber(prize);
           return (
             <View
               key={number}
@@ -185,7 +189,7 @@ const Ticket = ({ ticket }: { ticket: IWinningNumbers }) => {
                         color: colors.white,
                         backgroundColor: colors.primary,
                         marginHorizontal: 2,
-                        padding: 5,
+                        padding: 2,
                         borderRadius: 5,
                         textAlign: "center",
                         justifyContent: "center",
@@ -204,9 +208,12 @@ const Ticket = ({ ticket }: { ticket: IWinningNumbers }) => {
                   justifyContent: "center",
                 }}
               >
-                <CText style={{ fontSize: 18, marginRight: 3 }} content="ብር" />
                 <CText
-                  style={{ fontWeight: "bold", fontSize: 18 }}
+                  style={{ fontSize: 15, marginRight: 3 }}
+                  content={t("birr")}
+                />
+                <CText
+                  style={{ fontWeight: "bold", fontSize: 15 }}
                   content={prize}
                 />
               </View>

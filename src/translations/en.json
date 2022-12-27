@@ -41,5 +41,8 @@
   "try_again": "Please, try again",
   "won": "You Won",
   "news_details": "Details",
-  "news": "News"
+  "news": "News",
+  "end_number": "End number",
+  "all_or_ending_number": "All/Ending no.",
+  "prize": "Prize"
 }
