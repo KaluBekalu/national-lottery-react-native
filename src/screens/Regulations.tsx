@@ -5,6 +5,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  RefreshControl,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -22,7 +23,7 @@ const { width, height } = Dimensions.get("window");
 
 export default function Regulations({ navigation }) {
   const flatListRef = useRef<FlatList>(null);
-  const { regulations } = useContext(DataContext);
+  const { regulations, reload, loadingLotteries } = useContext(DataContext);
 
   const renderItem = ({ item }: any) => {
     return (
@@ -64,12 +65,14 @@ export default function Regulations({ navigation }) {
     );
   };
 
-  console.log(regulations);
   return (
     <View style={{ flex: 1 }}>
       {regulations.length ? (
         <Animated.FlatList
           ref={flatListRef}
+          refreshControl={
+            <RefreshControl refreshing={loadingLotteries} onRefresh={reload} />
+          }
           scrollEventThrottle={32}
           style={{ width }}
           data={regulations}
