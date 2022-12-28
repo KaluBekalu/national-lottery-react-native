@@ -11,7 +11,11 @@ import { db, errorSplitter } from "./firebase";
 
 export const getLotteries = async (cb?: Function) => {
   try {
-    const res = await getDocs(collection(db, "lotteries"));
+    const q = query(
+      collection(db, "lotteries"),
+      where("status", "==", "Published")
+    );
+    let res = await getDocs(q);
     cb && cb();
     return res.docs;
   } catch (err: any) {
