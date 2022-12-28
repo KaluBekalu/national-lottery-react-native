@@ -14,15 +14,6 @@ const ContactUs = () => {
 
   return (
     <View style={{ padding: 10 }}>
-      {/* <CText
-        content={t("contact_us")}
-        style={{
-          textAlign: "center",
-          fontWeight: "bold",
-          marginVertical: 10,
-          fontSize: 25,
-        }}
-      /> */}
       <View style={{}}>
         {contacts.map((contact) => {
           return (
@@ -62,6 +53,7 @@ const ContactUs = () => {
         {contacts.map((contact) => {
           return (
             <TouchableOpacity
+              key={contact.icon}
               style={{
                 backgroundColor: colors.primary,
                 marginHorizontal: 5,
