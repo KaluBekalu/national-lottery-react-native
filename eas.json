@@ -1,8 +1,15 @@
 {
   "build": {
-    "apk": {
+    "dev": {
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "channel": "dev"
+      }
+    },
+    "prod": {
+      "android": {
+        "buildType": "apk",
+        "channel": "prod"
       }
     },
     "update": {
@@ -12,7 +19,6 @@
     },
     "preview": {
       "developmentClient": true
-    },
-    "production": {}
+    }
   }
 }

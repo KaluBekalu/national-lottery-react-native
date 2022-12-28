@@ -84,10 +84,17 @@ export default function CheckLotto({ navigation, route }) {
             style={{ marginRight: 10, color: colors.white }}
             size={25}
           />
-          <CText
-            content={t("officially_released")}
-            style={{ color: colors.white }}
-          />
+          <View>
+            <CText
+              content={
+                t("draw_date") +
+                " " +
+                new Date(selected?.drawDate)?.toDateString()
+              }
+              style={{ color: colors.white }}
+            />
+            <CText content={t("released_at")} style={{ color: colors.white }} />
+          </View>
         </View>
         <CText
           content={t("enter_the_lot_number")}

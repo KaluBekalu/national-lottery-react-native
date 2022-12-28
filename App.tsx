@@ -16,6 +16,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useContext, useEffect, useState } from "react";
 import { Loading } from "./src/components/Loading";
 import { useTranslation } from "react-i18next";
+import { StatusBar } from "expo-status-bar";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -25,6 +26,7 @@ export default function App() {
 
   return (
     <>
+      <StatusBar hidden />
       {fontsLoaded ? (
         <DataContextProvider>
           <NavigationContainer>
@@ -67,18 +69,24 @@ const AppNav = () => {
   if (!ready) return <Loading />;
 
   return (
-    <Stack.Navigator
-      initialRouteName={onboardingDone ? routes.drawer : routes.onboarding_nav}
-      screenOptions={{
-        headerShown: false,
-        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-      }}
-    >
-      <Stack.Screen
-        name={routes.onboarding_nav}
-        component={OnBoardingNavigation}
-      />
-      <Stack.Screen name={routes.drawer} component={DrawerNavigator} />
-    </Stack.Navigator>
+    <>
+      <StatusBar hidden={false} />
+
+      <Stack.Navigator
+        initialRouteName={
+          onboardingDone ? routes.drawer : routes.onboarding_nav
+        }
+        screenOptions={{
+          headerShown: false,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      >
+        <Stack.Screen
+          name={routes.onboarding_nav}
+          component={OnBoardingNavigation}
+        />
+        <Stack.Screen name={routes.drawer} component={DrawerNavigator} />
+      </Stack.Navigator>
+    </>
   );
 };
