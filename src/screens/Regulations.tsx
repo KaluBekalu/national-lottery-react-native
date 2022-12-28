@@ -16,6 +16,7 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import Gradient from "../components/Gradient";
 import { DataContext } from "../context/DataContext";
 import routes from "../navigations/routes";
+import { NoData } from "../components/NoData";
 
 const { width, height } = Dimensions.get("window");
 
@@ -65,16 +66,20 @@ export default function Regulations({ navigation }) {
 
   console.log(regulations);
   return (
-    <View>
-      <Animated.FlatList
-        ref={flatListRef}
-        scrollEventThrottle={32}
-        style={{ width }}
-        data={regulations}
-        keyExtractor={(item: any) => item.key}
-        showsHorizontalScrollIndicator={false}
-        renderItem={renderItem}
-      />
+    <View style={{ flex: 1 }}>
+      {regulations.length ? (
+        <Animated.FlatList
+          ref={flatListRef}
+          scrollEventThrottle={32}
+          style={{ width }}
+          data={regulations}
+          keyExtractor={(item: any) => item.key}
+          showsHorizontalScrollIndicator={false}
+          renderItem={renderItem}
+        />
+      ) : (
+        <NoData />
+      )}
     </View>
   );
 }

@@ -169,18 +169,6 @@ const CustomDrawer = ({ navigation }) => {
               </TouchableOpacity>
             );
           })}
-          {/* <TouchableOpacity onPress={() => Linking.openURL("https://expo.dev")}>
-            <Icon3
-              name="telegram"
-              style={{ fontSize: 30, color: colors.white, margin: 20 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Linking.openURL("https://expo.dev")}>
-            <Icon3
-              name="facebook-official"
-              style={{ fontSize: 30, color: colors.white, margin: 20 }}
-            />
-          </TouchableOpacity> */}
         </View>
       </View>
     </ScrollView>
@@ -206,7 +194,7 @@ const DrawerButton = ({
         flexDirection: "row",
         marginVertical: 5,
         backgroundColor: active ? colors.subtleWhite : colors.transparent,
-        paddingHorizontal: 30,
+        paddingHorizontal: 20,
         marginHorizontal: 5,
         paddingVertical: 10,
         borderRadius: 5,

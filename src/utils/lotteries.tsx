@@ -61,8 +61,11 @@ export const getNews = async (cb?: Function) => {
 
 export const getRegulations = async (cb?: Function) => {
   try {
-    const res = await getDocs(collection(db, "regulations"));
-    cb && cb();
+    const q = query(
+      collection(db, "regulations"),
+      where("status", "==", "Published")
+    );
+    let res = await getDocs(q);
     return res.docs;
   } catch (err: any) {
     console.log("Failure", err, "error");

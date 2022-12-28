@@ -36,7 +36,7 @@ const Settings = () => {
             style={{
               color: i18n.language === "am" ? colors.primary : colors.grey,
             }}
-            content="Amharic"
+            content="አማርኛ"
           />
         </TouchableOpacity>
         <TouchableOpacity

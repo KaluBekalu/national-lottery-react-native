@@ -15,6 +15,7 @@ import routes from "../navigations/routes";
 import { DataContext } from "../context/DataContext";
 import { months } from "../constants";
 import { useTranslation } from "react-i18next";
+import { NoData } from "./NoData";
 
 const { width, height } = Dimensions.get("window");
 
@@ -97,16 +98,21 @@ export const Cards = ({ navigation }) => {
 
   return (
     <View style={{}}>
-      <Animated.FlatList
-        ref={flatListRef}
-        scrollEventThrottle={32}
-        style={{ width }}
-        data={lotteries}
-        keyExtractor={(item: any) => item?.id}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={renderItem}
-      />
+      {lotteries.length ? (
+        <Animated.FlatList
+          ref={flatListRef}
+          scrollEventThrottle={32}
+          style={{ width }}
+          data={lotteries}
+          keyExtractor={(item: any) => item?.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={renderItem}
+        />
+      ) : (
+        <NoData message={t("no_lottery_to_view")} />
+      )}
+
       <View
         style={{
           padding: 10,

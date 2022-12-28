@@ -27,7 +27,7 @@
   "news_and_informations": "News & Stories",
   "winners_story": "Winners story",
   "contact_us": "Contact us",
-  "rules_and_regulations": "Rules and Regulations",
+  "rules_and_regulations": "Rules & Regulations",
   "settings": "Settings",
   "will_be_drawn": "Drawn",
   "on_sale": "On sale",
@@ -45,5 +45,8 @@
   "end_number": "End number",
   "all_or_ending_number": "All/Ending no.",
   "prize": "Prize",
-  "lottery_not_drawn_yet": "Lottery not drawn yet!"
+  "lottery_not_drawn_yet": "Lottery not drawn yet!",
+  "no_data_available": "No data available!",
+  "no_news_to_view": "No news to view!",
+  "no_lottery_to_view": "No lottery to view!"
 }

@@ -43,5 +43,8 @@
   "end_number": "መጨረሻ ቁጥር",
   "all_or_ending_number": "ሙሉ/መጨረሻ ቁ.",
   "prize": "ዕጣ ብር",
-  "lottery_not_drawn_yet": "ሎተሪው ገና አልወጣም!"
+  "lottery_not_drawn_yet": "ሎተሪው ገና አልወጣም!",
+  "no_data_available": "ምንም ውሂብ የለም!",
+  "no_news_to_view": "ምንም ዜና የለም!",
+  "no_lottery_to_view": "ምንም ሎተሪ የለም!"
 }

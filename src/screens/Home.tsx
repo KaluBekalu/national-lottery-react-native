@@ -21,6 +21,7 @@ import { getLotteries } from "../utils/lotteries";
 import { ILotteries, ILottery } from "../utils/types";
 import { DataContext } from "../context/DataContext";
 import { useTranslation } from "react-i18next";
+import { NoData } from "../components/NoData";
 
 const { width, height } = Dimensions.get("window");
 const DATA = [
@@ -51,18 +52,21 @@ export const Home = ({ navigation }) => {
         <RefreshControl refreshing={loadingLotteries} onRefresh={reload} />
       }
     >
-      <Animated.FlatList
-        ref={flatListRef}
-        pagingEnabled
-        scrollEventThrottle={32}
-        style={{ width }}
-        data={news}
-        keyExtractor={(item: any) => item.key}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={({ item }) => renderItem({ item, navigation })}
-      />
-
+      {news.length ? (
+        <Animated.FlatList
+          ref={flatListRef}
+          pagingEnabled
+          scrollEventThrottle={32}
+          style={{ width }}
+          data={news}
+          keyExtractor={(item: any) => item.key}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={({ item }) => renderItem({ item, navigation })}
+        />
+      ) : (
+        <NoData message={t("no_news_to_view")} />
+      )}
       <Cards navigation={navigation} />
       <TouchableOpacity onPress={() => {}}>
         <CText
