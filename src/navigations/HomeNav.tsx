@@ -12,8 +12,8 @@ import { Home } from "../screens/Home";
 import News from "../screens/News";
 import NewsDetails from "../screens/NewsDetails";
 import Onboarding from "../screens/Onboarding";
+import Procalimations from "../screens/Regulations";
 import Settings from "../screens/Settings";
-import Testimonials from "../screens/Testimonials";
 import Tickets from "../screens/Tickets";
 import { CheckLottoNav } from "./CheckLottoNav";
 import { headerStyle } from "./DrawerNavigation";
@@ -59,11 +59,7 @@ export default function HomeNav({ navigation }) {
           options={{ headerTitle: t("lottery_numbers") }}
           component={CheckLottoNav}
         />
-        <Stack.Screen
-          name={routes.testimonials}
-          options={{ headerTitle: t("winners_story") }}
-          component={Testimonials}
-        />
+
         <Stack.Screen
           name={routes.news}
           options={{ headerTitle: t("news") }}
@@ -73,6 +69,11 @@ export default function HomeNav({ navigation }) {
           name={routes.contact_us}
           options={{ headerTitle: t("contact_us") }}
           component={ContactUs}
+        />
+        <Stack.Screen
+          name={routes.proclimations}
+          options={{ headerTitle: t("rules_and_regulations") }}
+          component={Procalimations}
         />
         <Stack.Screen
           name={routes.settings}

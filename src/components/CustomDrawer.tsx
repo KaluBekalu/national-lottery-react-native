@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Image, StyleSheet, ScrollView } from "react-native";
+import { Image, StyleSheet, ScrollView, Platform } from "react-native";
 import * as Linking from "expo-linking";
 
 import { View, Text, TouchableOpacity } from "react-native";
@@ -13,6 +13,7 @@ import { DataContext } from "../context/DataContext";
 import routes from "../navigations/routes";
 import CText from "./CText";
 import { useTranslation } from "react-i18next";
+import { contacts } from "../constants";
 
 const CustomDrawer = ({ navigation }) => {
   const { t } = useTranslation();
@@ -51,12 +52,12 @@ const CustomDrawer = ({ navigation }) => {
       title: t("news_and_informations"),
       icon: () => <Icon2 name="newspaper" size={25} color={colors.white} />,
     },
-    {
-      key: 5,
-      route: routes.testimonials,
-      title: t("winners_story"),
-      icon: () => <Icon2 name="nature-people" size={25} color={colors.white} />,
-    },
+    // {
+    //   key: 5,
+    //   route: routes.testimonials,
+    //   title: t("winners_story"),
+    //   icon: () => <Icon2 name="nature-people" size={25} color={colors.white} />,
+    // },
     {
       key: 6,
       route: routes.contact_us,
@@ -65,7 +66,7 @@ const CustomDrawer = ({ navigation }) => {
     },
     {
       key: 7,
-      route: routes.check_lotto_nav,
+      route: routes.proclimations,
       title: t("rules_and_regulations"),
       icon: () => (
         <Icon2 name="format-list-bulleted" size={25} color={colors.white} />
@@ -85,6 +86,7 @@ const CustomDrawer = ({ navigation }) => {
         backgroundColor: colors.primary,
         flex: 1,
       }}
+      contentContainerStyle={{ flex: 1 }}
     >
       <View
         style={{
@@ -140,7 +142,8 @@ const CustomDrawer = ({ navigation }) => {
 
       <View
         style={{
-          marginTop: 10,
+          marginBottom: 0,
+          flex: 1,
           alignItems: "center",
           justifyContent: "center",
         }}
@@ -153,13 +156,20 @@ const CustomDrawer = ({ navigation }) => {
             justifyContent: "center",
           }}
         >
-          <TouchableOpacity onPress={() => Linking.openURL("https://expo.dev")}>
-            <Icon3
-              name="phone"
-              style={{ fontSize: 30, color: colors.white, margin: 20 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => Linking.openURL("https://expo.dev")}>
+          {contacts.map((i) => {
+            return (
+              <TouchableOpacity
+                key={i.icon}
+                onPress={() => Linking.openURL(i.link)}
+              >
+                <Icon3
+                  name={i.icon}
+                  style={{ fontSize: 30, color: colors.white, margin: 20 }}
+                />
+              </TouchableOpacity>
+            );
+          })}
+          {/* <TouchableOpacity onPress={() => Linking.openURL("https://expo.dev")}>
             <Icon3
               name="telegram"
               style={{ fontSize: 30, color: colors.white, margin: 20 }}
@@ -170,7 +180,7 @@ const CustomDrawer = ({ navigation }) => {
               name="facebook-official"
               style={{ fontSize: 30, color: colors.white, margin: 20 }}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </View>
     </ScrollView>

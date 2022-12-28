@@ -7,29 +7,9 @@ import colors from "../constants/colors";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import FAIcons from "react-native-vector-icons/FontAwesome";
 import { useTranslation } from "react-i18next";
+import { contacts } from "../constants";
 
 const ContactUs = () => {
-  const contacts = [
-    {
-      icon: "phone",
-      value: "+251111553387",
-      link:
-        Platform.OS === "android"
-          ? "tel:+251111553387"
-          : "telprompt:+251111553387",
-    },
-    {
-      icon: "facebook",
-      value: "https://m.facebook.com/National Lottery Administration",
-      link: "https://m.facebook.com",
-    },
-    {
-      icon: "telegram",
-      value: "https://t.me/national_lottery",
-      link: "https://t.me/national_lottery",
-    },
-  ];
-
   const { t } = useTranslation();
 
   return (

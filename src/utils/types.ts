@@ -61,3 +61,13 @@ export type INews = {
 };
 
 export type INewsList = [INews] | any;
+
+// Regulationss
+export type IRegulation = {
+  id?: string;
+  title: string;
+  description: string;
+  status: "Published" | "Draft";
+};
+
+export type IRegulations = [IRegulations] | any;

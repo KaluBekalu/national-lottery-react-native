@@ -1,12 +1,18 @@
 import { View, Text } from "react-native";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { getLotteries, getNews, getWinnigNumbers } from "../utils/lotteries";
+import {
+  getLotteries,
+  getNews,
+  getRegulations,
+  getWinnigNumbers,
+} from "../utils/lotteries";
 import {
   DataContextTypes,
   ILotteries,
   ILottery,
   INews,
   INewsList,
+  IRegulations,
   IWinningNumbers,
   IWinningNumbersList,
 } from "../utils/types";
@@ -19,9 +25,21 @@ const DataContextProvider = ({ children }) => {
   const [loadingNumbers, setLoadingNumbers] = useState(false);
   const [lotteries, setLotteries] = useState<ILotteries | []>([]);
   const [news, setNews] = useState<INewsList>([]);
+  const [regulations, setRegulations] = useState<INewsList>([]);
   const [winningNumbersList, setWinningNumbersList] =
     useState<IWinningNumbersList>([]);
 
+  const fetchRegulations = async () => {
+    setLoadingLotteries(true);
+    let res = await getRegulations(() => setLoadingLotteries(false));
+    if (res) {
+      let l: IRegulations = [];
+      res.forEach((i) => {
+        l.push({ id: i.id, ...i.data() } as IRegulations);
+      });
+      setRegulations(l);
+    }
+  };
   const fetchLotteries = async () => {
     setLoadingLotteries(true);
     let res = await getLotteries(() => setLoadingLotteries(false));
@@ -61,6 +79,7 @@ const DataContextProvider = ({ children }) => {
   const reload = () => {
     fetchLotteries();
     fetchNews();
+    fetchRegulations();
     fetchWinningNumbersList();
   };
 
@@ -81,6 +100,8 @@ const DataContextProvider = ({ children }) => {
           refreshing: loadingLotteries || loadingNumbers,
           language,
           news,
+          regulations,
+          setRegulations,
           setLanguage,
           reload,
           setWinningNumbersList,

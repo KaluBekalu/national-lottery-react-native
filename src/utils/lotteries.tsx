@@ -19,6 +19,7 @@ export const getLotteries = async (cb?: Function) => {
     return false;
   }
 };
+
 export const getWinnigNumbers = async (cb?: Function) => {
   try {
     const q = query(
@@ -49,6 +50,19 @@ export const getNews = async (cb?: Function) => {
   try {
     const q = query(collection(db, "news"), where("status", "==", "Published"));
     let res = await getDocs(q);
+    return res.docs;
+  } catch (err: any) {
+    console.log("Failure", err, "error");
+    return false;
+  }
+};
+
+// Regulations
+
+export const getRegulations = async (cb?: Function) => {
+  try {
+    const res = await getDocs(collection(db, "regulations"));
+    cb && cb();
     return res.docs;
   } catch (err: any) {
     console.log("Failure", err, "error");

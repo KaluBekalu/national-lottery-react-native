@@ -15,5 +15,6 @@ export default {
   news: "News ",
   news_details: "News Details",
   contact_us: "Contact Us",
+  proclimations: "Proclimations",
   settings: "Settings",
 };
