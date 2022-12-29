@@ -82,12 +82,16 @@ export const Cards = ({ navigation }) => {
               }}
             />
             <CText
-              content={t("will_be_drawn")}
+              content={
+                Date.parse(item?.drawDate) > Date.now()
+                  ? t("will_be_drawn")
+                  : t("is_drawn")
+              }
               style={{
                 color: colors.primary,
                 textAlign: "center",
-                // fontWeight: "bold",
                 marginBottom: 10,
+                marginHorizontal: 5,
               }}
             />
           </View>

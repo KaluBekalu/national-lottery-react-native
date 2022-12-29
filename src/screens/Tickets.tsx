@@ -65,7 +65,9 @@ export default function Tickets({ navigation, route }) {
           style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
         />
         <DropDown
-          data={lotteries}
+          data={lotteries.filter((i) => {
+            return new Date(i?.drawDate) < new Date();
+          })}
           selected={selected}
           setSelected={setSelected}
         />
