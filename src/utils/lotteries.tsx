@@ -52,7 +52,11 @@ export const getLotteryById = async (id: string, cb?: Function) => {
 // NEWS
 export const getNews = async (cb?: Function) => {
   try {
-    const q = query(collection(db, "news"), where("status", "==", "Published"));
+    const q = query(
+      collection(db, "news"),
+      where("status", "==", "Published"),
+      orderBy("createdAt", "desc")
+    );
     let res = await getDocs(q);
     return res.docs;
   } catch (err: any) {
@@ -78,12 +82,12 @@ export const getStories = async (cb?: Function) => {
 };
 
 // Regulations
-
 export const getRegulations = async (cb?: Function) => {
   try {
     const q = query(
       collection(db, "regulations"),
-      where("status", "==", "Published")
+      where("status", "==", "Published"),
+      orderBy("createdAt", "desc")
     );
     let res = await getDocs(q);
     return res.docs;
