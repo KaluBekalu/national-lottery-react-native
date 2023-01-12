@@ -52,12 +52,12 @@ const CustomDrawer = ({ navigation }) => {
       title: t("news_and_informations"),
       icon: () => <Icon2 name="newspaper" size={25} color={colors.white} />,
     },
-    // {
-    //   key: 5,
-    //   route: routes.testimonials,
-    //   title: t("winners_story"),
-    //   icon: () => <Icon2 name="nature-people" size={25} color={colors.white} />,
-    // },
+    {
+      key: 5,
+      route: routes.storys,
+      title: t("storys"),
+      icon: () => <Icon2 name="nature-people" size={25} color={colors.white} />,
+    },
     {
       key: 6,
       route: routes.contact_us,

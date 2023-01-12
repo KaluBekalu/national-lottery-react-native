@@ -61,6 +61,21 @@ export const getNews = async (cb?: Function) => {
   }
 };
 
+// Stories
+export const getStories = async (cb?: Function) => {
+  try {
+    const q = query(
+      collection(db, "stories"),
+      where("status", "==", "Published")
+    );
+    let res = await getDocs(q);
+    return res.docs;
+  } catch (err: any) {
+    console.log("Failure", err, "error");
+    return false;
+  }
+};
+
 // Regulations
 
 export const getRegulations = async (cb?: Function) => {

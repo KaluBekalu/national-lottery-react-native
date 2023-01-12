@@ -13,7 +13,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import WinnerLoser from "../screens/WinnerLoser";
 import { CheckLottoNav } from "./CheckLottoNav";
 import Tickets from "../screens/Tickets";
-import Testimonials from "../screens/Testimonials";
+import Stories from "../screens/Stories";
 import NewsDetails from "../screens/NewsDetails";
 import ContactUs from "../screens/ContactUs";
 import { useTranslation } from "react-i18next";
@@ -62,9 +62,9 @@ export default function DrawerNavigator({}) {
           component={CheckLottoNav}
         />
         <Drawer.Screen
-          name={routes.testimonials}
+          name={routes.storys}
           options={{ headerTitle: t("winners_story") }}
-          component={Testimonials}
+          component={Stories}
         /> */}
         {/* <Drawer.Screen
           name={routes.news_details}

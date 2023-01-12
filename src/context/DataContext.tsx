@@ -4,6 +4,7 @@ import {
   getLotteries,
   getNews,
   getRegulations,
+  getStories,
   getWinnigNumbers,
 } from "../utils/lotteries";
 import {
@@ -13,6 +14,8 @@ import {
   INews,
   INewsList,
   IRegulations,
+  IStory,
+  IStoryList,
   IWinningNumbers,
   IWinningNumbersList,
 } from "../utils/types";
@@ -25,6 +28,7 @@ const DataContextProvider = ({ children }) => {
   const [loadingNumbers, setLoadingNumbers] = useState(false);
   const [lotteries, setLotteries] = useState<ILotteries | []>([]);
   const [news, setNews] = useState<INewsList>([]);
+  const [stories, setStories] = useState<IStoryList>([]);
   const [regulations, setRegulations] = useState<INewsList>([]);
   const [winningNumbersList, setWinningNumbersList] =
     useState<IWinningNumbersList>([]);
@@ -63,6 +67,17 @@ const DataContextProvider = ({ children }) => {
       setNews(l);
     }
   };
+  const fetchStories = async () => {
+    setLoadingLotteries(true);
+    let res = await getStories(() => setLoadingLotteries(false));
+    if (res) {
+      let l: IStoryList = [];
+      res.forEach((i) => {
+        l.push({ id: i.id, ...i.data() } as IStory);
+      });
+      setStories(l);
+    }
+  };
 
   const fetchWinningNumbersList = async () => {
     setLoadingNumbers(true);
@@ -86,6 +101,7 @@ const DataContextProvider = ({ children }) => {
   useEffect(() => {
     fetchLotteries();
     fetchNews();
+    fetchStories();
     fetchWinningNumbersList();
     return () => {};
   }, []);
@@ -100,7 +116,10 @@ const DataContextProvider = ({ children }) => {
           refreshing: loadingLotteries || loadingNumbers,
           language,
           news,
+          stories,
           regulations,
+          setStories,
+          fetchStories,
           setRegulations,
           setLanguage,
           reload,

@@ -62,6 +62,17 @@ export type INews = {
 
 export type INewsList = [INews] | any;
 
+// STORIES
+export type IStory = {
+  id?: string;
+  title: string;
+  image: string;
+  description: string;
+  status: "Published" | "Draft";
+};
+
+export type IStoryList = [IStory] | any;
+
 // Regulationss
 export type IRegulation = {
   id?: string;

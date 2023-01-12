@@ -14,6 +14,8 @@ import NewsDetails from "../screens/NewsDetails";
 import Onboarding from "../screens/Onboarding";
 import Procalimations from "../screens/Regulations";
 import Settings from "../screens/Settings";
+import Stories from "../screens/Stories";
+import StoryDetails from "../screens/StoryDetails";
 import Tickets from "../screens/Tickets";
 import { CheckLottoNav } from "./CheckLottoNav";
 import { headerStyle } from "./DrawerNavigation";
@@ -44,11 +46,7 @@ export default function HomeNav({ navigation }) {
           name={routes.home}
           component={Home}
         />
-        <Stack.Screen
-          name={routes.news_details}
-          options={{ headerTitle: t("news_details") }}
-          component={NewsDetails}
-        />
+
         <Stack.Screen
           name={routes.tickets}
           options={{ headerTitle: t("lot_number_filter") }}
@@ -61,10 +59,27 @@ export default function HomeNav({ navigation }) {
         />
 
         <Stack.Screen
+          name={routes.storys}
+          options={{ headerTitle: t("storys") }}
+          component={Stories}
+        />
+        <Stack.Screen
+          name={routes.story_details}
+          options={{ headerTitle: t("story_details") }}
+          component={StoryDetails}
+        />
+
+        <Stack.Screen
           name={routes.news}
           options={{ headerTitle: t("news") }}
           component={News}
         />
+        <Stack.Screen
+          name={routes.news_details}
+          options={{ headerTitle: t("news_details") }}
+          component={NewsDetails}
+        />
+
         <Stack.Screen
           name={routes.contact_us}
           options={{ headerTitle: t("contact_us") }}

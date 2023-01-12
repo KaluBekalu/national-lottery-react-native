@@ -59,7 +59,7 @@ export const Home = ({ navigation }) => {
           scrollEventThrottle={32}
           style={{ width }}
           data={news}
-          keyExtractor={(item: any) => item.key}
+          keyExtractor={(item: any) => item.id}
           horizontal
           showsHorizontalScrollIndicator={false}
           renderItem={({ item }) => renderItem({ item, navigation })}
