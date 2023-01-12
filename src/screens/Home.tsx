@@ -68,12 +68,10 @@ export const Home = ({ navigation }) => {
         <NoData message={t("no_news_to_view")} />
       )}
       <Cards navigation={navigation} />
-      <TouchableOpacity onPress={() => {}}>
-        <CText
-          style={{ padding: 10, fontWeight: "bold" }}
-          content={t("choose_lottery_type")}
-        />
-      </TouchableOpacity>
+      <CText
+        style={{ padding: 10, fontWeight: "bold" }}
+        content={t("choose_lottery_type")}
+      />
       <Lotteries navigation={navigation} />
     </ScrollView>
   );

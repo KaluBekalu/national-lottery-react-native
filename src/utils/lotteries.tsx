@@ -66,7 +66,8 @@ export const getStories = async (cb?: Function) => {
   try {
     const q = query(
       collection(db, "stories"),
-      where("status", "==", "Published")
+      where("status", "==", "Published"),
+      orderBy("createdAt", "desc")
     );
     let res = await getDocs(q);
     return res.docs;

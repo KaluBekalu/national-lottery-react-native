@@ -5,6 +5,7 @@ import {
   Dimensions,
   FlatList,
   Image,
+  RefreshControl,
   ScrollView,
   Text,
   TouchableOpacity,
@@ -22,12 +23,11 @@ const { width, height } = Dimensions.get("window");
 
 export default function Stories({ navigation }) {
   const flatListRef = useRef<FlatList>(null);
-  const { stories } = useContext(DataContext);
+  const { stories, loadingLotteries, reload } = useContext(DataContext);
 
   const renderItem = ({ item }: any) => {
     return (
-      <TouchableOpacity
-        onPress={() => navigation.navigate(routes.news_details, { news: item })}
+      <View
         key={item.key}
         style={{
           backgroundColor: colors.white,
@@ -49,7 +49,12 @@ export default function Stories({ navigation }) {
             borderTopRightRadius: 5,
           }}
         />
-        <View style={{ paddingVertical: 15, width: "100%" }}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate(routes.news_details, { news: item })
+          }
+          style={{ paddingVertical: 15, width: "100%" }}
+        >
           <View
             style={{
               flexDirection: "row",
@@ -68,8 +73,8 @@ export default function Stories({ navigation }) {
             />
           </View>
           <CText style={{ fontWeight: "bold" }} content={item.title} />
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     );
   };
 
@@ -81,6 +86,9 @@ export default function Stories({ navigation }) {
           scrollEventThrottle={32}
           style={{ width }}
           data={stories}
+          refreshControl={
+            <RefreshControl refreshing={loadingLotteries} onRefresh={reload} />
+          }
           keyExtractor={(item: any) => item.key}
           showsHorizontalScrollIndicator={false}
           renderItem={renderItem}

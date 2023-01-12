@@ -94,6 +94,7 @@ const DataContextProvider = ({ children }) => {
   const reload = () => {
     fetchLotteries();
     fetchNews();
+    fetchStories();
     fetchRegulations();
     fetchWinningNumbersList();
   };
