@@ -1,7 +1,7 @@
 export default {
   drawer: "Drawer",
   onboarding_nav: "Onboarding Navigation",
-  check_lotto_nav: "check Lottos",
+  check_lotto_nav: "Check Lottos",
   home_nav: "Home",
 
   onboarding: "Onboarding",
@@ -10,7 +10,7 @@ export default {
   home: "Home Page",
   check_lotto: "Check Lotto",
   winner_loser: "Winner Loser",
-  tickets: "TIckets",
+  tickets: "Tickets",
   storys: "Stories",
   story_details: "Story Detail",
   news: "News ",

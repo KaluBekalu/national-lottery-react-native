@@ -3,15 +3,12 @@ import {
   createStackNavigator,
 } from "@react-navigation/stack";
 import { useTranslation } from "react-i18next";
-import { StatusBar } from "react-native";
 import HeaderLeft from "../components/HeaderLeft";
 import colors from "../constants/colors";
-import ChooseLanguage from "../screens/ChooseLanguage";
 import ContactUs from "../screens/ContactUs";
 import { Home } from "../screens/Home";
 import News from "../screens/News";
 import NewsDetails from "../screens/NewsDetails";
-import Onboarding from "../screens/Onboarding";
 import Procalimations from "../screens/Regulations";
 import Settings from "../screens/Settings";
 import Stories from "../screens/Stories";

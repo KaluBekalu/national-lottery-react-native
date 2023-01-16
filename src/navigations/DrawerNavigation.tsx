@@ -1,23 +1,10 @@
-import {
-  createDrawerNavigator,
-  DrawerNavigationOptions,
-} from "@react-navigation/drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useNavigation } from "@react-navigation/native";
 import routes from "./routes";
-import { Home } from "../screens/Home";
 import CustomDrawer from "../components/CustomDrawer";
 import { StatusBar } from "react-native";
 import colors from "../constants/colors";
-import CheckLotto from "../screens/CheckLotto";
-import { LinearGradient } from "expo-linear-gradient";
-import WinnerLoser from "../screens/WinnerLoser";
-import { CheckLottoNav } from "./CheckLottoNav";
-import Tickets from "../screens/Tickets";
-import Stories from "../screens/Stories";
-import NewsDetails from "../screens/NewsDetails";
-import ContactUs from "../screens/ContactUs";
 import { useTranslation } from "react-i18next";
-import Settings from "../screens/Settings";
 import HomeNav from "./HomeNav";
 
 const Drawer = createDrawerNavigator();
@@ -41,7 +28,6 @@ export default function DrawerNavigator({}) {
             headerTitleAlign: "center",
             headerTintColor: colors.white,
             headerStyle: headerStyle,
-
             unmountOnBlur: true,
           };
         }}

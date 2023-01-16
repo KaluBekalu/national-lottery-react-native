@@ -51,7 +51,7 @@ export default function Stories({ navigation }) {
         />
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate(routes.news_details, { news: item })
+            navigation.navigate(routes.story_details, { story: item })
           }
           style={{ paddingVertical: 15, width: "100%" }}
         >
