@@ -13,8 +13,7 @@ export const getLotteries = async (cb?: Function) => {
   try {
     const q = query(
       collection(db, "lotteries"),
-      // where("status", "==", "Published"),
-      where("type", "==", "recursive")
+      where("status", "==", "Published")
     );
     let res = await getDocs(q);
 
@@ -30,11 +29,12 @@ export const getLotteries = async (cb?: Function) => {
     return false;
   }
 };
+
 export const getLotteryEntries = async (id: string) => {
   try {
     const q = query(
       collection(db, "lotteryEntries"),
-      // where("status", "==", "Published"),
+      where("status", "==", "Published"),
       where("lotteryId", "==", id)
     );
     let res = await getDocs(q);

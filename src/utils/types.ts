@@ -49,6 +49,7 @@ export type ILotteryEntries = {
   lotteryId: string;
   expiryDate: string;
   endDate: string;
+  fileUrl?: string;
 };
 
 export type LotteryFormProps = {

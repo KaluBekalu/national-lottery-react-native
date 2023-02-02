@@ -5,6 +5,7 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+  Linking,
 } from "react-native";
 import CText from "../components/CText";
 import colors from "../constants/colors";
@@ -19,7 +20,7 @@ import {
   ILotteryEntries,
   IWinningNumbers,
 } from "../utils/types";
-import Icon from "react-native-vector-icons/AntDesign";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { Loading } from "../components/Loading";
 import DropDown from "../components/DropDown";
@@ -71,19 +72,29 @@ export default function Tickets({ navigation, route }) {
           zIndex: 100,
         }}
       >
-        <CText
-          content={t("choose_lottery_type")}
-          style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
-        />
-        {/* 
-        <DropDown
-          data={lotteries.filter((i) => {
-            return new Date(i?.drawDate) < new Date();
-          })}
-          selected={selected}
-          setSelected={setSelected}
-        /> */}
-
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginVertical: 5,
+          }}
+        >
+          <CText
+            content={t("choose_lottery_type")}
+            style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
+          />
+          <TouchableOpacity
+            onPress={() => {
+              Linking.openURL(entry?.fileUrl);
+            }}
+          >
+            <Icon
+              style={{ color: colors.white, fontSize: 25, margin: 5 }}
+              name="file-download-outline"
+            />
+          </TouchableOpacity>
+        </View>
         <DropDown
           data={lotteries.filter((i) => {
             return new Date(i?.drawDate) < new Date();
