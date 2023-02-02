@@ -1,9 +1,11 @@
-import { ScrollView } from "react-native";
+import { Dimensions, ScrollView } from "react-native";
 import CText from "../components/CText";
 import React, { useEffect, useState } from "react";
 import { Text, Image, TouchableOpacity, Linking } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import colors from "../constants/colors";
+
+const { width } = Dimensions.get("window");
 
 const NewsDetails = ({ route }) => {
   const news = route.params.news;
@@ -19,15 +21,14 @@ const NewsDetails = ({ route }) => {
           alignItems: "center",
           justifyContent: "center",
           marginVertical: 0,
+          width,
+          overflow: "hidden",
         }}
         onPress={() => {
           Linking.openURL(link);
         }}
       >
-        <Image
-          style={{ width: 300, height: 200, borderRadius: 10 }}
-          source={{ uri }}
-        />
+        <Image style={{ width: "100%", height: 200 }} source={{ uri }} />
         <Icon
           size={40}
           style={{
@@ -41,21 +42,22 @@ const NewsDetails = ({ route }) => {
       </TouchableOpacity>
     );
   };
-
   useEffect(() => {
+    console.log(news);
     return () => {};
   }, []);
 
   return (
     <ScrollView style={{ padding: 15 }}>
-      {news.image ? (
+      {news?.image ? (
         <Image
-          source={{ uri: news.image }}
+          source={{ uri: news?.image }}
+          resizeMode="contain"
           style={{
             width: "100%",
             height: 250,
-            borderTopLeftRadius: 5,
-            borderTopRightRadius: 5,
+            borderRadius: 5,
+            marginBottom: 10,
           }}
         />
       ) : null}

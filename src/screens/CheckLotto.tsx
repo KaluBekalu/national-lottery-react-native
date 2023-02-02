@@ -9,7 +9,7 @@ import { CButton } from "../components/CButton";
 import { LottoNumberBox } from "../components/LottoNumberBox";
 import DropDown from "../components/DropDown";
 import { DataContext } from "../context/DataContext";
-import { DataContextTypes, ILottery } from "../utils/types";
+import { DataContextTypes, ILottery, ILotteryEntries } from "../utils/types";
 import { useTranslation } from "react-i18next";
 
 const { width, height } = Dimensions.get("window");
@@ -19,19 +19,18 @@ export default function CheckLotto({ navigation, route }) {
   const { lotteries, winningNumbersList } =
     useContext<DataContextTypes>(DataContext);
   const [selected, setSelected] = useState<ILottery>();
+  const [entry, setEntry] = useState<ILotteryEntries>(null);
 
   const { t } = useTranslation();
 
   const filter = (ltId) => {
     setSelected(lotteries.filter((i) => i.id === ltId)[0]);
+    setEntry(lotteries.filter((i) => i.id === ltId)[0].lotteryEntries[0]);
   };
 
   const checkNumber = () => {
     if (lottoNumber.length != 7) return;
-
-    const lotteryNumbers = winningNumbersList
-      .filter((i) => i.lotteryId == selected.id)
-      .map((i) => i.numbers)[0];
+    const lotteryNumbers = entry.winningNumbers.map((i) => i.numbers)[0];
     const possibleWinList = lotteryNumbers.filter((i) => {
       if (lottoNumber.endsWith(i.number.toString())) {
         return i;
@@ -73,6 +72,17 @@ export default function CheckLotto({ navigation, route }) {
           selected={selected}
           setSelected={setSelected}
         />
+        <CText
+          content={t("choose_from_lottery")}
+          style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
+        />
+        {selected ? (
+          <DropDown
+            data={selected.lotteryEntries}
+            selected={entry}
+            setSelected={setEntry}
+          />
+        ) : null}
         <View
           style={{
             flexDirection: "row",
@@ -89,9 +99,7 @@ export default function CheckLotto({ navigation, route }) {
           <View>
             <CText
               content={
-                t("draw_date") +
-                " " +
-                new Date(selected?.drawDate)?.toDateString()
+                t("draw_date") + " " + new Date(entry?.drawDate)?.toDateString()
               }
               style={{ color: colors.white }}
             />

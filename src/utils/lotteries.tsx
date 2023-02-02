@@ -13,17 +13,68 @@ export const getLotteries = async (cb?: Function) => {
   try {
     const q = query(
       collection(db, "lotteries"),
-      where("status", "==", "Published")
+      // where("status", "==", "Published"),
+      where("type", "==", "recursive")
     );
     let res = await getDocs(q);
+
     cb && cb();
-    return res.docs;
+    return res.docs.map((i) => {
+      return {
+        id: i.id,
+        ...i.data(),
+      };
+    });
+  } catch (err: any) {
+    console.log("Failure", err, "error");
+    return false;
+  }
+};
+export const getLotteryEntries = async (id: string) => {
+  try {
+    const q = query(
+      collection(db, "lotteryEntries"),
+      // where("status", "==", "Published"),
+      where("lotteryId", "==", id)
+    );
+    let res = await getDocs(q);
+
+    return await Promise.all(
+      res.docs.map(async (i) => {
+        let winningNumbers = await getWinnigNumbersByEntryId(i.id);
+        return {
+          id: i.id,
+          winningNumbers,
+          ...i.data(),
+        };
+      })
+    );
   } catch (err: any) {
     console.log("Failure", err, "error");
     return false;
   }
 };
 
+export const getWinnigNumbersByEntryId = async (id: string, cb?: Function) => {
+  try {
+    const q = query(
+      collection(db, "winningNumbers"),
+      where("lotteryEntryId", "==", id)
+      // orderBy("endNumber", "asc")
+    );
+    let res = await getDocs(q);
+
+    return res.docs.map((i) => {
+      return {
+        id: i.id,
+        ...i.data(),
+      };
+    });
+  } catch (err: any) {
+    console.log("Failure", err, "error");
+    return false;
+  }
+};
 export const getWinnigNumbers = async (cb?: Function) => {
   try {
     const q = query(

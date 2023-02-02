@@ -13,7 +13,14 @@ import routes from "../navigations/routes";
 import { CButton } from "../components/CButton";
 import { LottoNumberBox } from "../components/LottoNumberBox";
 import { DataContext } from "../context/DataContext";
-import { DataContextTypes, ILottery, IWinningNumbers } from "../utils/types";
+import {
+  DataContextTypes,
+  ILottery,
+  ILotteryEntries,
+  IWinningNumbers,
+} from "../utils/types";
+import Icon from "react-native-vector-icons/AntDesign";
+
 import { Loading } from "../components/Loading";
 import DropDown from "../components/DropDown";
 import { useTranslation } from "react-i18next";
@@ -29,9 +36,13 @@ export default function Tickets({ navigation, route }) {
   const lotteryId = route.params?.lotteryId;
 
   const [selected, setSelected] = useState<ILottery>();
+  const [entry, setEntry] = useState<ILotteryEntries>(null);
+
   const { t } = useTranslation();
   const filter = () => {
-    setSelected(lotteries.filter((i) => i.id === currentLotteryId)[0]);
+    let ltry = lotteries.filter((i) => i.id === currentLotteryId)[0];
+    setSelected(ltry);
+    ltry && setEntry(ltry.lotteryEntries[0]);
   };
 
   useEffect(() => {
@@ -64,6 +75,15 @@ export default function Tickets({ navigation, route }) {
           content={t("choose_lottery_type")}
           style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
         />
+        {/* 
+        <DropDown
+          data={lotteries.filter((i) => {
+            return new Date(i?.drawDate) < new Date();
+          })}
+          selected={selected}
+          setSelected={setSelected}
+        /> */}
+
         <DropDown
           data={lotteries.filter((i) => {
             return new Date(i?.drawDate) < new Date();
@@ -71,12 +91,47 @@ export default function Tickets({ navigation, route }) {
           selected={selected}
           setSelected={setSelected}
         />
+        <CText
+          content={t("choose_from_lottery")}
+          style={{ fontWeight: "bold", color: colors.white, margin: 5 }}
+        />
+        {selected ? (
+          <DropDown
+            data={selected.lotteryEntries}
+            selected={entry}
+            setSelected={setEntry}
+          />
+        ) : null}
+
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            padding: 15,
+            width: width / 1.1,
+          }}
+        >
+          <Icon
+            name="calendar"
+            style={{ marginRight: 10, color: colors.white }}
+            size={25}
+          />
+          <View>
+            <CText
+              content={
+                t("draw_date") + " " + new Date(entry?.drawDate)?.toDateString()
+              }
+              style={{ color: colors.white }}
+            />
+            <CText content={t("released_at")} style={{ color: colors.white }} />
+          </View>
+        </View>
         <View
           style={{
             backgroundColor: colors.lightBlue,
             width: "auto",
             height: 50,
-            marginTop: 50,
+            // marginTop: 50,
             borderTopRightRadius: 10,
             borderTopLeftRadius: 10,
             flexDirection: "row",
@@ -115,15 +170,17 @@ export default function Tickets({ navigation, route }) {
           })}
         </View>
       </Gradient>
-      <ScrollView contentContainerStyle={{}}>
-        {winningNumbersList
-          .filter((wn: IWinningNumbers) => {
-            return wn.lotteryId === selected?.id;
-          })
-          .map((i: IWinningNumbers) => {
-            return <Ticket key={i.id} ticket={i} />;
-          })}
-      </ScrollView>
+      {selected ? (
+        <ScrollView contentContainerStyle={{}}>
+          {entry?.winningNumbers
+            .filter((wn: IWinningNumbers) => {
+              return wn.lotteryId === selected?.id;
+            })
+            .map((i: IWinningNumbers) => {
+              return <Ticket key={i.id} ticket={i} />;
+            })}
+        </ScrollView>
+      ) : null}
     </View>
   );
 }

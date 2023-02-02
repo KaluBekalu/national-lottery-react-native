@@ -18,6 +18,7 @@ export const LotteryCard = ({ item, navigation }: LotteryCardPropTypes) => {
   const showToast = () => {
     ToastAndroid.show(t("lottery_not_drawn_yet"), ToastAndroid.SHORT);
   };
+
   return (
     <TouchableOpacity
       onPress={() => {

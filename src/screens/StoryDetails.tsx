@@ -1,12 +1,14 @@
-import { ScrollView } from "react-native";
+import { Dimensions, ScrollView } from "react-native";
 import CText from "../components/CText";
 import React, { useEffect, useState } from "react";
 import { Text, Image, TouchableOpacity, Linking } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import colors from "../constants/colors";
 
+const { width } = Dimensions.get("window");
+
 const StoryDetails = ({ route }) => {
-  const news = route.params.news;
+  const story = route.params.story;
 
   const youtubeRegex = /(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+/gi;
 
@@ -19,15 +21,14 @@ const StoryDetails = ({ route }) => {
           alignItems: "center",
           justifyContent: "center",
           marginVertical: 0,
+          width,
+          overflow: "hidden",
         }}
         onPress={() => {
           Linking.openURL(link);
         }}
       >
-        <Image
-          style={{ width: 300, height: 200, borderRadius: 10 }}
-          source={{ uri }}
-        />
+        <Image style={{ width: "100%", height: 200 }} source={{ uri }} />
         <Icon
           size={40}
           style={{
@@ -48,19 +49,20 @@ const StoryDetails = ({ route }) => {
 
   return (
     <ScrollView style={{ padding: 15 }}>
-      {news.image ? (
+      {story?.image ? (
         <Image
-          source={{ uri: news.image }}
+          source={{ uri: story?.image }}
           style={{
             width: "100%",
             height: 250,
             borderTopLeftRadius: 5,
             borderTopRightRadius: 5,
+            marginBottom: 10,
           }}
         />
       ) : null}
       <Text style={{}}>
-        {news.description?.split(" ").map((word, index) => {
+        {story.description?.split(" ").map((word, index) => {
           if (youtubeRegex.test(word)) {
             const videoId = word.split("v=")[1];
             const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;

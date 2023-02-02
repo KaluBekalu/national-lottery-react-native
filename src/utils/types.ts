@@ -36,6 +36,19 @@ export type ILottery = {
   startDate: string;
   drawDate: string;
   endDate: string;
+  lotteryEntries: ILotteryEntries;
+};
+
+export type ILotteryEntries = {
+  id: string;
+  winningNumbers: [IWinningNumbers];
+  name: string;
+  startDate: string;
+  status: string;
+  drawDate: string;
+  lotteryId: string;
+  expiryDate: string;
+  endDate: string;
 };
 
 export type LotteryFormProps = {
@@ -48,7 +61,12 @@ export type IWinningNumbers = {
   id?: string;
   endNumber: string;
   lotteryId: string;
-  numbers: { number: string; prize: string };
+  numbers: [INumber];
+};
+
+export type INumber = {
+  number: string;
+  prize: string;
 };
 
 // NEWS

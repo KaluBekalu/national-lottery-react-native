@@ -2,6 +2,7 @@ import { View, Text } from "react-native";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   getLotteries,
+  getLotteryEntries,
   getNews,
   getRegulations,
   getStories,
@@ -44,15 +45,19 @@ const DataContextProvider = ({ children }) => {
       setRegulations(l);
     }
   };
+
   const fetchLotteries = async () => {
     setLoadingLotteries(true);
     let res = await getLotteries(() => setLoadingLotteries(false));
     if (res) {
-      let l: ILotteries = [];
-      res.forEach((i) => {
-        l.push({ id: i.id, ...i.data() } as ILottery);
+      Promise.all(
+        res.map(async (i) => {
+          let lotteryEntries = await getLotteryEntries(i.id);
+          return { ...i, lotteryEntries };
+        })
+      ).then((result) => {
+        setLotteries(result as ILotteries);
       });
-      setLotteries(l);
     }
   };
 
